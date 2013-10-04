@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package checkers;
 
 import java.util.Scanner;
@@ -12,8 +8,11 @@ import java.util.Scanner;
  * Mark Earl
  */
 public class Player {
-    String name;
-    double score;
+    String name = "Fred";
+    long wins = 0;
+    long losses = 0;
+    long ties = 0;
+    String playerType;
  
     public Player() {
         
@@ -26,6 +25,13 @@ public class Player {
         return this.name;
     }
     
+    public String setPlayerType() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Which side will, " + name + " be? (x or o):");
+        this.playerType = input.next();
+        return this.playerType;
+    }
+    
     public void setName(String theName) {
         this.name = theName;
     }
@@ -35,6 +41,6 @@ public class Player {
     }
     
     public void updateScore() {
-        this.score++;
+        this.wins++;
     }
 }

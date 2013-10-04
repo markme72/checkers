@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package checkers;
 
 import java.util.Scanner;
@@ -25,12 +21,17 @@ public class Checkers {
                             + "to the opposite side of the board then your checker is kinged and can move both\n" 
                             + "forward and backward diagonally now. These kings will be represented by \"X\"\n"
                             + "and \"O\". Once one player successfully takes all of their opponent's checkers\n"
-                            + "the game is over and the remaining player wins.";
+                            + "the game is over and the remaining player wins.\n\n";
         
         public static void main(String[] args) {
             Checkers myGame = new Checkers();
             myGame.getName();
             myGame.displayHelp();
+            
+            Player player1 = new Player();
+            
+            player1.displayName();
+            
     }
         public void getName() {
             Scanner input = new Scanner(System.in);
