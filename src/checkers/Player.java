@@ -14,8 +14,7 @@ public class Player {
     long ties = 0;
     String playerType;
  
-    public Player() {
-        
+    public Player() {   
     }
     
     public String getName() {
