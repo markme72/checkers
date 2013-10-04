@@ -36,7 +36,7 @@ public class Player {
     }
     
     public void displayName() {
-        System.out.println("My name is " + this.name);
+        System.out.println("Default player is " + this.name);
     }
     
     public void updateScore() {
