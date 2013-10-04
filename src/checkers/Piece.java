@@ -17,5 +17,6 @@ public class Piece {
    int numOfPieces = 12;
    public void displayNumOfPieces() {
       System.out.println("\nEach Player has " + numOfPieces + ".");
+      
    }
 }
