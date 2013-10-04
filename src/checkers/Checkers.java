@@ -33,6 +33,12 @@ public class Checkers {
             Player player1 = new Player();
             player1.displayName();
             // End of Mark Earl's doing
+            
+            //This was done by Ryan
+            Piece pieceO = new Piece();
+            pieceO.displayNumOfPieces();
+                    
+           
     }
         public void getName() {
             Scanner input = new Scanner(System.in);
