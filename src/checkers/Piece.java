@@ -10,5 +10,8 @@ package checkers;
  * @author Mark Earl
  */
 public class Piece {
+    public static void piece (){
+    
+    }
 
 }
