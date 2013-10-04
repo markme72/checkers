@@ -28,10 +28,11 @@ public class Checkers {
             myGame.getName();
             myGame.displayHelp();
             
+            
+            // Mark Earl was here
             Player player1 = new Player();
-            
             player1.displayName();
-            
+            // End of Mark Earl's doing
     }
         public void getName() {
             Scanner input = new Scanner(System.in);
