@@ -38,7 +38,10 @@ public class Checkers {
             Piece pieceO = new Piece();
             pieceO.displayNumOfPieces();
                     
-           
+           //This was done by Mike
+            Board board = new Board();
+            board.displaySize();
+            
     }
         public void getName() {
             Scanner input = new Scanner(System.in);
