@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  *
  * @author
- * Mark Earl
+ * Mark Earl, Ryan Plumb, Mike Coleman
  */
 public class Checkers {
         String name;
