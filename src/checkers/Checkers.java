@@ -42,6 +42,9 @@ public class Checkers {
             Board board = new Board();
             board.displaySize();
             
+            //Paired programming L3 P2
+            board.boardSize();
+            
     }
         public void getName() {
             Scanner input = new Scanner(System.in);
