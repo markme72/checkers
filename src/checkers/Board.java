@@ -58,4 +58,30 @@ public class Board {
         
     }
     
+    public int spacesUsed() {
+        int actualSquares = 64;
+        int actualPieces = 24;
+        double percentage;
+        Scanner squaresInput = new Scanner(System.in);
+        System.out.println("How many squares are on a checker board?");
+        int squares = squaresInput.nextInt();
+        if (squares != actualSquares) {
+            System.out.println("That is incorrect");
+            return -1;
+        }
+        Scanner piecesInput = new Scanner(System.in);
+        System.out.println("How many pieces are on a checker board?");
+        int pieces = piecesInput.nextInt();
+        if (pieces != actualPieces) {
+            System.out.println("That is incorrect");
+            return -1;
+        }
+        
+        percentage = ((double)actualPieces / (double)actualSquares * 100);
+        
+        System.out.println("\n\t" + percentage + "% of the squares on checker board contain pieces.");
+        
+        return 0;
+    }
+    
 }

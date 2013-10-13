@@ -44,7 +44,9 @@ public class Checkers {
             
             //Paired programming L3 P2
             board.boardSize();
-            
+
+            //Mark Earl Individual Programming Assignment L3 Part 2
+            board.spacesUsed();
     }
         public void getName() {
             Scanner input = new Scanner(System.in);
