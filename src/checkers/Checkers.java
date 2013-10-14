@@ -37,6 +37,7 @@ public class Checkers {
             //This was done by Ryan
             Piece pieceO = new Piece();
             pieceO.displayNumOfPieces();
+            pieceO.pieceColor();
                     
            //This was done by Mike
             Board board = new Board();
