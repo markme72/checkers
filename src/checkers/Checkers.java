@@ -48,6 +48,13 @@ public class Checkers {
 
             //Mark Earl Individual Programming Assignment L3 Part 2
             board.spacesUsed();
+            
+            //Mike did this
+            double winLossRatio;
+            Statistics statistics = new Statistics();
+            winLossRatio = statistics.getWinningPercentage(4, 2);
+            System.out.println("The winning percentage of 4 wins and 2 losses is " + winLossRatio + "%.");
+            
     }
         public void getName() {
             Scanner input = new Scanner(System.in);

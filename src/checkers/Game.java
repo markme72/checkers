@@ -7,8 +7,8 @@ package checkers;
 
 /**
  *
- * @author Mark Earl
+ * @author Mike Coleman
  */
 public class Game {
-
+   
 }
