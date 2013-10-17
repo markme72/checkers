@@ -8,6 +8,7 @@ import java.util.Scanner;
  * Mark Earl, Ryan Plumb, Mike Coleman
  */
 public class Checkers {
+        private static final Scanner inFile = new Scanner(System.in);
         String name;
         String instructions = "This is Checkers! It is a fun game! You'll love it! It is a two player game.\n"
                             + "Each player starts with 12 pieces called checkers. One player has red checkers\n"
@@ -23,8 +24,17 @@ public class Checkers {
                             + "and \"O\". Once one player successfully takes all of their opponent's checkers\n"
                             + "the game is over and the remaining player wins.\n\n";
         
+        public static Scanner getInputFile() {
+        return Checkers.inFile;
+    }
+        
         public static void main(String[] args) {
             Checkers myGame = new Checkers();
+            
+            HelpMenuView helpMenu = new HelpMenuView();
+            
+            helpMenu.getInput();
+            
             myGame.getName();
             myGame.displayHelp();
             
