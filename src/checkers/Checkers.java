@@ -9,6 +9,10 @@ import java.util.Scanner;
  */
 public class Checkers {
         private static final Scanner inFile = new Scanner(System.in);
+
+    static HelpMenuView getHelpMenu() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
         String name;
         String instructions = "This is Checkers! It is a fun game! You'll love it! It is a two player game.\n"
                             + "Each player starts with 12 pieces called checkers. One player has red checkers\n"
@@ -37,6 +41,16 @@ public class Checkers {
             
             myGame.getName();
             myGame.displayHelp();
+            
+        //This was doen by Ryan
+            {
+            Checkers checkers = new Checkers();
+            checkers.display();
+            MainMenuView mainMenu = new MainMenuView();
+
+            mainMenu.getInput(null);
+            Checkers.inFile.close();
+    }
             
             
             // Mark Earl was here
@@ -76,4 +90,8 @@ public class Checkers {
             System.out.println("\nWelcome " + this.name + "\n");
             System.out.println(this.instructions);
         }
+
+    private void display() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
