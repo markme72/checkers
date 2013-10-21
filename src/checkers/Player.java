@@ -8,13 +8,21 @@ import java.util.Scanner;
  * Mark Earl
  */
 public class Player {
+    public static final String REGULAR_PLAYER = "REGULAR";
+    public static final String COMPUTER_PLAYER = "COMPUTER"; 
     String name = "Fred";
     long wins = 0;
     long losses = 0;
     long ties = 0;
     String playerType;
+    private String marker;
  
     public Player() {   
+    }
+    
+    public Player(String playerType, String marker) {
+        this.playerType = playerType;
+        this.marker = marker;
     }
     
     public String getName() {
@@ -41,5 +49,9 @@ public class Player {
     
     public void updateScore() {
         this.wins++;
+    }
+     
+    public void setMarker(String marker) {
+        this.marker = marker;
     }
 }

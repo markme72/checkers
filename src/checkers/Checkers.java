@@ -9,9 +9,11 @@ import java.util.Scanner;
  */
 public class Checkers {
         private static final Scanner inFile = new Scanner(System.in);
+        private static final HelpMenuView helpMenu = new HelpMenuView();
+        private static final GamePreferencesMenuView GamePreferencesMenu = new GamePreferencesMenuView();
 
-    static HelpMenuView getHelpMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static HelpMenuView getHelpMenu() {
+        return Checkers.helpMenu;
     }
         String name;
         String instructions = "This is Checkers! It is a fun game! You'll love it! It is a two player game.\n"
@@ -29,7 +31,11 @@ public class Checkers {
                             + "the game is over and the remaining player wins.\n\n";
         
         public static Scanner getInputFile() {
-        return Checkers.inFile;
+            return Checkers.inFile;
+    }
+   
+        public static GamePreferencesMenuView getGamePreferencesMenu() {
+            return GamePreferencesMenu;
     }
         
         public static void main(String[] args) {
@@ -64,14 +70,14 @@ public class Checkers {
             pieceO.pieceColor();
                     
            //This was done by Mike
-            Board board = new Board();
-            board.displaySize();
+            BoardView boardView = new BoardView();
+            boardView.displaySize();
             
             //Paired programming L3 P2
-            board.boardSize();
+            boardView.boardSize();
 
             //Mark Earl Individual Programming Assignment L3 Part 2
-            board.spacesUsed();
+            boardView.spacesUsed();
             
             //Mike did this
             double winLossRatio;
