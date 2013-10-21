@@ -11,4 +11,8 @@ package checkers;
  */
 public class GamePreferencesMenuView {
 
+    
+    public Game getInput (Game game) {
+        return game;
+    }
 }

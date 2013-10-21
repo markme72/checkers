@@ -18,12 +18,12 @@ public class GameMenuView {
 
 
     private final static String[][] menuItems = {
-        {"T", "Take your turn"},
-        {"D", "Display the board"},
-        {"N", "New Game"},
-        {"R", "Report stastics"},
-        {"P", "Change game preferences"},
-        {"H", "Help"},
+        {"1", "Take your turn"},
+        {"2", "Display the board"},
+        {"3", "New Game"},
+        {"4", "Report stastics"},
+        {"5", "Change game preferences"},
+        {"6", "Help"},
         {"Q", "QUIT"}
     };
 
@@ -47,22 +47,22 @@ public class GameMenuView {
             // get commaned entered
             String command = this.getCommand();
             switch (command) {
-                case "T":
+                case "1":
                     this.gameMenuControl.takeTurn();
                     break;
-                case "D":
+                case "2":
                     gameMenuControl.displayBoard();
                     break;
-                case "N":
+                case "3":
                     gameMenuControl.startNewGame();
                     break;
-                case "R":
+                case "4":
                     gameMenuControl.displayStatistics();
                     break;
-                case "P":
+                case "5":
                     gameMenuControl.displayPreferencesMenu();
                     break;
-                case "H":
+                case "6":
                     gameMenuControl.displayHelpMenu();
                     break;
                 case "Q":
@@ -78,7 +78,7 @@ public class GameMenuView {
 
     public final void display() {
         System.out.println("\n\t===============================================================");
-        System.out.println("\tEnter the letter associated with one of the following commands:");
+        System.out.println("\tEnter the number associated with one of the following commands:");
 
         for (int i = 0; i < GameMenuView.menuItems.length; i++) {
             System.out.println("\t   " + menuItems[i][0] + "\t" + menuItems[i][1]);

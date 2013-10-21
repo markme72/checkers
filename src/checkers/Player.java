@@ -54,4 +54,9 @@ public class Player {
     public void setMarker(String marker) {
         this.marker = marker;
     }
+    
+    public String getPlayerStatistics() {
+        String playerStatistics = "";
+        return playerStatistics;
+    }
 }
