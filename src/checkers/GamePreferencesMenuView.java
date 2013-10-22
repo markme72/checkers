@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Checkers;
+package checkers;
 
 
 import java.util.Scanner;

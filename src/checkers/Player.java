@@ -59,4 +59,8 @@ public class Player {
         String playerStatistics = "";
         return playerStatistics;
     }
+    
+    public String getMarker() {
+        return marker;
+    }
 }

@@ -8,7 +8,7 @@ import java.awt.Point;
 
 /**
  *
- * @author jacksonrkj
+ * @author  Mark Earl
  */
 public class GameMenuControl {
 
