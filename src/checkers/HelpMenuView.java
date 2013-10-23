@@ -93,7 +93,7 @@ public class HelpMenuView  {
     // retrieves the command entered by the end user
     protected final String getCommand() {
 
-        Scanner inFile = Checkers.getInputFile();
+        Scanner inFile = Checkers.getInput();
         String command;
         boolean valid = false;
         do {

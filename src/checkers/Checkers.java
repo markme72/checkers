@@ -30,7 +30,7 @@ public class Checkers {
                             + "and \"O\". Once one player successfully takes all of their opponent's checkers\n"
                             + "the game is over and the remaining player wins.\n\n";
         
-        public static Scanner getInputFile() {
+        public static Scanner getInput() {
             return Checkers.inFile;
     }
    

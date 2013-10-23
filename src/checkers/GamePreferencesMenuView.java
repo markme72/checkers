@@ -23,7 +23,6 @@ public class GamePreferencesMenuView  {
     private final static String[][] menuItems = {
         {"1", "Change Marker of the first Player"},
         {"2", "Change Marker of the second Player"},
-        {"D", "Change the dimensions of the board"},
         {"Q", "Return to game menu"}
     };
 
@@ -48,9 +47,6 @@ public class GamePreferencesMenuView  {
                     break;
                 case "2":
                     this.gamePreferenceControl.getMarker(this.game.getPlayerB());
-                    break;
-                case "D":
-                    this.gamePreferenceControl.getDimensions();
                     break;
                 case "Q":
                     return Game.QUIT;
@@ -85,7 +81,7 @@ public class GamePreferencesMenuView  {
 
     protected final String getCommand() {
 
-        Scanner inFile = Checkers.getInputFile();
+        Scanner inFile = Checkers.getInput();
         String command;
         boolean valid = false;
         do {

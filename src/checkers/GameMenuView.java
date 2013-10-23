@@ -99,7 +99,7 @@ public class GameMenuView {
 
     protected final String getCommand() {
 
-        Scanner inFile = Checkers.getInputFile();
+        Scanner inFile = Checkers.getInput();
         String command;
         boolean valid = false;
         do {

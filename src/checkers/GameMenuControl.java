@@ -14,7 +14,7 @@ public class GameMenuControl {
 
     private Game game;
     private Board board;
-    // private GetLocationView getLocation = new GetLocationView();
+    private Location getLocation = new Location();
     private BoardView displayBoard = new BoardView();
 
     public GameMenuControl(Game game) {
@@ -25,7 +25,8 @@ public class GameMenuControl {
        
     
    public void takeTurn() {
-        System.out.println("\n\ttakeTurn() called");
+        Point markerLocation = getLocation.getMarkerLocation(game);
+        Point moveLocation = getLocation.getMoveLocation(game);
     }
    
        

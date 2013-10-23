@@ -24,7 +24,7 @@ public class Piece {
    }
    //w3 indv programing assignment
    public int pieceColor(){
-        Scanner inputColor = Checkers.getInputFile();
+        Scanner inputColor = Checkers.getInput();
         System.out.println("Enter a 0 for red peices or 1 for black peices ");
         int color = inputColor.nextInt();
         if (color == 0) {
