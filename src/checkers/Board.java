@@ -13,12 +13,11 @@ import java.awt.Point;
  */
 public class Board {
     Point boardDimensions;
-    Player[][] boardLocations;
+    Location[][] boardLocations;
     
     
     public Board(int noRows, int noColumns) {
-        //this.boardDimensions.setLocation(noRows, noRows);
-        //this.boardLocations = new Player[noRows][noColumns];
+        this.boardLocations = new Location[noRows][noColumns];
     }
     
             public int getRowCount() {
@@ -33,11 +32,17 @@ public class Board {
         return boardDimensions;
     }
    
-    public Player[][] getBoardLocations() {
+    public Location[][] getBoardLocations() {
         return boardLocations;
     }
     
-    public void setBoardLocations(Player[][] boardLocations) {
+    public void setBoardLocations(Location[][] boardLocations) {
         this.boardLocations = boardLocations;
     }
-}
+    
+    public boolean locationOccupied(Point location) {
+       return false;
+        }
+    }
+
+    

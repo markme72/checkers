@@ -49,7 +49,6 @@ public class Game {
         this();
 
         this.gameType = gameType;
-        this.board = new Board(8, 8);
         
     }
    

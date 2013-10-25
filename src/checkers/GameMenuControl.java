@@ -13,8 +13,8 @@ import java.awt.Point;
 public class GameMenuControl {
 
     private Game game;
-    private Board board;
-    private Location getLocation = new Location();
+    private Board board = new Board(8,8);
+    private Location getLocation = new Location(this.board);
     private BoardView displayBoard = new BoardView();
 
     public GameMenuControl(Game game) {
