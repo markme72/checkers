@@ -20,7 +20,7 @@ public class Board {
         this.boardLocations = new Location[noRows][noColumns];
     }
     
-            public int getRowCount() {
+    public int getRowCount() {
         return 1;
     }
 

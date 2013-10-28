@@ -18,6 +18,7 @@ public class Location {
     private Checkers checkers;
     private Player player = null;
     private Board board;
+    private Point boardLocation;
     
     public Location(Board board) {
         this.board = board;
@@ -141,5 +142,9 @@ public class Location {
         }
         
         return location;
+    }
+    
+    public void setLocation(int row, int col) {
+        this.boardLocation = new Point(row, col);
     }
 }
