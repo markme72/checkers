@@ -1,66 +1,141 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package checkers;
 
-import java.util.Scanner;
 
 /**
  *
- * @author
- * Mark Earl
+ * @author Mark Earl, Ryan Plumb, Mike Coleman
  */
 public class Player {
+
     public static final String REGULAR_PLAYER = "REGULAR";
     public static final String COMPUTER_PLAYER = "COMPUTER"; 
-    String name = "Fred";
-    long wins = 0;
-    long losses = 0;
-    long ties = 0;
-    String playerType;
-    private String marker;
- 
-    public Player() {   
-    }
     
+    private String name;
+    private double age;
+    private String playerType;
+    private long wins = 0;
+    private long losses = 0;
+    private long ties = 0;
+    private String marker;
+    private int numOfMarkers = 12;
+    
+    
+
+    public Player() {
+    }
+
     public Player(String playerType, String marker) {
         this.playerType = playerType;
         this.marker = marker;
     }
     
     public String getName() {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Enter your name: ");
-        this.name = input.next();
-        return this.name;
+        return name;
     }
+
+    public double getAge() {
+        return age;
+    }
+
+    public void setAge(double age) {
+        this.age = age;
+    }
+
     
-    public String setPlayerType() {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Which side will, " + name + " be? (x or o):");
-        this.playerType = input.next();
-        return this.playerType;
+    public void setName(String name) {
+        this.name = name;
     }
-    
-    public void setName(String theName) {
-        this.name = theName;
+
+    public String getPlayerType() {
+        return playerType;
     }
-    
-    public void displayName() {
-        System.out.println("Default player is " + this.name);
+
+    public void setPlayerType(String playerType) {
+        this.playerType = playerType;
     }
-    
-    public void updateScore() {
-        this.wins++;
+
+    public long getWins() {
+        return wins;
     }
-     
-    public void setMarker(String marker) {
-        this.marker = marker;
+
+    public void setWins(long wins) {
+        this.wins = wins;
     }
-    
-    public String getPlayerStatistics() {
-        String playerStatistics = "";
-        return playerStatistics;
+
+    public long getLosses() {
+        return losses;
     }
-    
+
+    public void setLosses(long losses) {
+        this.losses = losses;
+    }
+
     public String getMarker() {
         return marker;
     }
+
+    public void setMarker(String marker) {
+        this.marker = marker;
+    }
+
+    public long getTies() {
+        return ties;
+    }
+
+    public void setTies(long ties) {
+        this.ties = ties;
+    }
+
+
+    
+   
+    public double getWinningPercentage(long wins, long losses, long ties) {
+     
+        if (wins < 0 ) {
+            System.out.println("\n\tThe number of wins must be "
+                    + "greater than or equal to zero.");
+            return -999;
+        }
+        
+        if (losses < 0 ) {
+            System.out.println("\n\tThe number of losses must be "
+                    + "greater than or equal to zero.");
+            return -999;
+        }
+        
+        if (ties < 0 ) {
+            System.out.println("\n\tThe number of ties must be "
+                    + "greater than or equal to zero.");
+            return -999;
+        }
+        
+        double totalScore = wins + losses + ties;
+        
+        if (totalScore ==  0) {
+            return 0;
+        }
+        
+        double winLossRatio = wins / totalScore;
+        return winLossRatio * 100;
+    }
+
+    public String getPlayerStastics() {
+        String playerStatistics = 
+                this.getName() + " has won "
+                + this.getWinningPercentage(this.wins, this.losses, this.ties) + "% of the games."
+                + "\n\t" + this.getWins() + " wins, "
+                + this.getLosses() + " losses and "
+                + this.getTies() + " ties.";
+        
+        return playerStatistics;
+    }
+
+    public int getNumOfMarkers() {
+        return this.numOfMarkers;
+    }
+    
 }

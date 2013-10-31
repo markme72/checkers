@@ -8,11 +8,16 @@ import java.util.Scanner;
 
 /**
  *
- * @author Rya
+ * @author Mark Earl, Ryan Plumb, Mike Coleman
  */
+
+
 public class MainMenuView {
     
-private static final String[][] menuItems = {
+    private Game game;
+    
+    
+    private static final String[][] menuItems = {
         {"1", "One player game"},
         {"2", "Two player game"},
         {"H", "Help"},
@@ -22,59 +27,9 @@ private static final String[][] menuItems = {
     MainMenuControl mainMenuControl = new MainMenuControl();
     
     public MainMenuView() {
-
-    }
- 
-    
-    public String getInput(Object object) {       
-        
-        String gameStatus = Game.PLAYING;
-        do {
-            this.display();
-
-            // get commaned entered
-            String command = this.getCommand();
-            switch (command) {
-                case "1":
-                    this.mainMenuControl.startGame(1);
-                    break;
-                case "2":
-                    this.mainMenuControl.startGame(2);
-                    break;
-                case "H":
-                    HelpMenuView helpMenu = Checkers.getHelpMenu();
-                    helpMenu.getInput();
-                    break;
-                case "X":
-                    return Game.EXIT;
-            }
-        } while (!gameStatus.equals("QUIT"));
-
-        return "QUIT";
     }
     
-    
-   public final String getCommand() {
-
-        Scanner inFile = Checkers.getInput();
-        String command;
-        boolean valid = false;
-        do {
-            command = inFile.nextLine();
-            command = command.trim().toUpperCase();
-            valid = validCommand(command);
-            if (!validCommand(command)) {
-                new CheckersError().displayError("Invalid command. Please enter a valid command.");
-                continue;
-            }
-                
-        } while (!valid);
-        
-        return command;
-    }
-    
-    
-   public final void display() {
+    public final void display() {
         System.out.println("\n\t===============================================================");
         System.out.println("\tEnter the letter associated with one of the following commands:");
 
@@ -94,7 +49,51 @@ private static final String[][] menuItems = {
         }
         return false;
     }
+
+    protected final String getCommand() {
+
+        Scanner inFile = Checkers.getInputFile();
+        String command;
+        boolean valid = false;
+        do {
+            command = inFile.nextLine();
+            command = command.trim().toUpperCase();
+            valid = validCommand(command);
+            if (!validCommand(command)) {
+                new CheckersError().displayError("Invalid command. Please enter a valid command.");
+                continue;
+            }
+                
+        } while (!valid);
+        
+        return command;
+    }
     
-   
+    public String getInput() {       
+        
+        String gameStatus = Game.PLAYING;
+        do {
+            this.display();
+
+            // get commaned entered
+            String command = this.getCommand();
+            switch (command) {
+                case "1":
+                    mainMenuControl.startGame(1);
+                    break;
+                case "2":
+                    mainMenuControl.startGame(2);
+                    break;
+                case "H":
+                    mainMenuControl.displayHelpMenu();
+                    break;
+                case "X":
+                    return Game.EXIT;
+            }
+        } while (!gameStatus.equals(Game.EXIT));
+
+        return Game.EXIT;
+    }
+
     
 }

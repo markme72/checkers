@@ -1,22 +1,30 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package checkers;
+
+
 
 import java.util.Scanner;
 
+
 /**
  *
- * @author
- * Mark Earl, Ryan Plumb, Mike Coleman
+ * @author Mark Earl, Ryan Plumb, Mike Coleman
  */
-public class Checkers {
-        private static final Scanner inFile = new Scanner(System.in);
-        private static final HelpMenuView helpMenu = new HelpMenuView();
-        private static final GamePreferencesMenuView GamePreferencesMenu = new GamePreferencesMenuView();
 
-    public static HelpMenuView getHelpMenu() {
-        return Checkers.helpMenu;
-    }
-        String name;
-        String instructions = "This is Checkers! It is a fun game! You'll love it! It is a two player game.\n"
+
+public class Checkers {
+     
+    private static final Scanner inFile = new Scanner(System.in);
+    private static HelpMenuView helpMenuView = new HelpMenuView();
+    private static GamePreferencesMenuView GamePreferencesMenu;
+    
+    private static String[] nameList;
+    
+    private final static String WELCOME = 
+                              "This is Checkers! It is a fun game! You'll love it! It is a two player game.\n"
                             + "Each player starts with 12 pieces called checkers. One player has red checkers\n"
                             + "while the other player has black. In the game one color will be represented by\n"
                             + "\"x\" and the other will be represented by \"o\". The game bored has 2 colors on\n"
@@ -29,64 +37,46 @@ public class Checkers {
                             + "forward and backward diagonally now. These kings will be represented by \"X\"\n"
                             + "and \"O\". Once one player successfully takes all of their opponent's checkers\n"
                             + "the game is over and the remaining player wins.\n\n";
-        
-        public static Scanner getInput() {
-            return Checkers.inFile;
-    }
-   
-        public static GamePreferencesMenuView getGamePreferencesMenu() {
-            return GamePreferencesMenu;
-    }
-        
-        public static void main(String[] args) {
-            Checkers myGame = new Checkers();
-            
-            myGame.getName();
-            myGame.displayHelp();
-            
-        //This was doen by Ryan
-            
-            Checkers checkers = new Checkers();
-            MainMenuView mainMenu = new MainMenuView();
 
-            mainMenu.getInput(null);
-            
-            
-            // Mark Earl was here
-            Player player1 = new Player();
-            player1.displayName();
-            // End of Mark Earl's doing
-            
-            //This was done by Ryan
-            Piece pieceO = new Piece();
-            pieceO.displayNumOfPieces();
-            pieceO.pieceColor();
-                    
-           //This was done by Mike
-            BoardView boardView = new BoardView();
-            boardView.displaySize();
-            
-            //Paired programming L3 P2
-            boardView.boardSize();
-
-            //Mark Earl Individual Programming Assignment L3 Part 2
-            boardView.spacesUsed();
-            
-            //Mike did this
-            double winLossRatio;
-            Statistics statistics = new Statistics();
-            winLossRatio = statistics.getWinningPercentage(4, 2);
-            System.out.println("The winning percentage of 4 wins and 2 losses is " + winLossRatio + "%.");
-            
-    }
-        public void getName() {
-            Scanner input = new Scanner(System.in);
-            System.out.println("Enter your name: ");
-            this.name = input.next();
-        }
+    
+    public Checkers() {
         
-        public void displayHelp() {
-            System.out.println("\nWelcome " + this.name + "\n");
-            System.out.println(this.instructions);
-        }
+    }
+        
+    public static Scanner getInputFile() {
+        return Checkers.inFile;
+    }
+    
+    public static HelpMenuView getHelpMenuView() {
+        return Checkers.helpMenuView;
+    }
+
+
+    public static GamePreferencesMenuView getGamePreferencesMenu() {
+        return GamePreferencesMenu;
+    }
+
+    public static String[] getNameList() {
+        return nameList;
+    }
+
+    public static void setNameList(String[] nameList) {
+        Checkers.nameList = nameList;
+    }
+    
+        
+    public static void main(String[] args) {
+        Checkers ticTacToe = new Checkers();
+        ticTacToe.display();
+        MainMenuView mainMenu = new MainMenuView();
+
+        mainMenu.getInput();
+        Checkers.inFile.close();
+    }
+    
+    private void display() {
+        System.out.println(Checkers.WELCOME);
+    }
+    
+
 }

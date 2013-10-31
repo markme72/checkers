@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Mike Coleman
+ * @author Mark Earl, Ryan Plumb, Mike Coleman
  */
 
 
@@ -18,7 +18,7 @@ import java.util.Scanner;
 public class GamePreferencesMenuView  {
     
     private Game game;
-    private GamePreferencesMenuControl gamePreferenceControl = new GamePreferencesMenuControl();
+    private GamePreferencesMenuControl gamePreferenceControl;
 
     private final static String[][] menuItems = {
         {"1", "Change Marker of the first Player"},
@@ -26,38 +26,11 @@ public class GamePreferencesMenuView  {
         {"Q", "Return to game menu"}
     };
 
-    public GamePreferencesMenuView() {
-    }
-
-    
-    public String getInput(Object object) {       
-        this.game = (Game) object;
-        this.gamePreferenceControl.setGame(game);
-        
-        String gameStatus = Game.PLAYING;
-        do {
-            this.display();
-
-            // get commaned entered
-            String command = this.getCommand();
-            
-            switch (command) {
-                case "1":
-                    this.gamePreferenceControl.getMarker(this.game.getPlayerA());
-                    break;
-                case "2":
-                    this.gamePreferenceControl.getMarker(this.game.getPlayerB());
-                    break;
-                case "Q":
-                    return Game.QUIT;
-            }
-        } while (!gameStatus.equals(Game.QUIT));
-
-        return gameStatus;
+    public GamePreferencesMenuView(Game game) {
+        this.game = game;
+        this.gamePreferenceControl = new GamePreferencesMenuControl(this.game);
     }
     
-    
-        
     public final void display() {
         System.out.println("\n\t===============================================================");
         System.out.println("\tEnter the letter associated with one of the following commands:");
@@ -79,9 +52,9 @@ public class GamePreferencesMenuView  {
         return false;
     }
 
-    protected final String getCommand() {
+    private final String getCommand() {
 
-        Scanner inFile = Checkers.getInput();
+        Scanner inFile = Checkers.getInputFile();
         String command;
         boolean valid = false;
         do {
@@ -97,5 +70,32 @@ public class GamePreferencesMenuView  {
         
         return command;
     }
- 
+    
+    
+    public String getInput() { 
+       this.game = game;
+       String command = "";
+        
+        do {
+            this.display();
+
+            // get commaned entered
+           command = this.getCommand();
+            
+            switch (command) {
+                case "1":
+                    this.gamePreferenceControl.getMarker(this.game.getPlayerA());
+                    break;
+                case "2":
+                    this.gamePreferenceControl.getMarker(this.game.getPlayerB());
+                    break;
+                case "Q":
+                    return "QUIT";
+            }
+        } while (!command.equals("Q"));
+
+        return "PLAYING";
+    }
+    
+    
 }

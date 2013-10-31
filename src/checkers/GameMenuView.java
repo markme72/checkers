@@ -4,32 +4,32 @@
  */
 package checkers;
 
-// import java.awt.Point;
 import java.util.Scanner;
 
 /**
  *
- * @author Mark Earl
+ * @author Mark Earl, Ryan Plumb, Mike Coleman
  */
 public class GameMenuView {
     
     private Game game;
-    private GameMenuControl gameMenuControl ; 
+    private GameMenuControl gameMenuControl = null; 
 
 
     private final static String[][] menuItems = {
         {"1", "Take your turn"},
         {"2", "Display the board"},
         {"3", "New Game"},
-        {"4", "Report stastics"},
-        {"5", "Change game preferences"},
-        {"6", "Help"},
+        {"4", "Report Game Statistics"},
+        {"5", "Report Player Stastics"},
+        {"6", "Change game preferences"},
+        {"7", "Help"},
         {"Q", "QUIT"}
     };
 
     public GameMenuView(Game game) {
-        this.gameMenuControl = new GameMenuControl(game);
-        
+        this.game = game;
+        this.gameMenuControl = new GameMenuControl(game);      
     }
 
     
@@ -51,19 +51,22 @@ public class GameMenuView {
                     this.gameMenuControl.takeTurn();
                     break;
                 case "2":
-                    gameMenuControl.displayBoard();
+                    this.gameMenuControl.displayBoard();
                     break;
                 case "3":
-                    gameMenuControl.startNewGame();
+                    this.gameMenuControl.startNewGame();
                     break;
                 case "4":
-                    gameMenuControl.displayStatistics();
+                    this.gameMenuControl.displayGameStatistics();
                     break;
                 case "5":
-                    gameMenuControl.displayPreferencesMenu();
+                    this.gameMenuControl.displayPlayerStatistics();
                     break;
                 case "6":
-                    gameMenuControl.displayHelpMenu();
+                    this.gameMenuControl.displayPreferencesMenu();
+                    break;
+                case "7":
+                    this.gameMenuControl.displayHelpMenu();
                     break;
                 case "Q":
                     gameStatus = "QUIT";
@@ -78,7 +81,7 @@ public class GameMenuView {
 
     public final void display() {
         System.out.println("\n\t===============================================================");
-        System.out.println("\tEnter the number associated with one of the following commands:");
+        System.out.println("\tEnter the letter associated with one of the following commands:");
 
         for (int i = 0; i < GameMenuView.menuItems.length; i++) {
             System.out.println("\t   " + menuItems[i][0] + "\t" + menuItems[i][1]);
@@ -99,7 +102,7 @@ public class GameMenuView {
 
     protected final String getCommand() {
 
-        Scanner inFile = Checkers.getInput();
+        Scanner inFile = Checkers.getInputFile();
         String command;
         boolean valid = false;
         do {
@@ -115,11 +118,6 @@ public class GameMenuView {
         
         return command;
     }
-
- 
-
-    
-    
 
 
 

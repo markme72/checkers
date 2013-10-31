@@ -4,13 +4,16 @@
  */
 package checkers;
 
+import java.util.Scanner;
+
 /**
  *
- * @author Rya
+ * @author Mark Earl, Ryan Plumb, Mike Coleman
  */
 public class MainMenuControl {
     
-public void startGame(long noPlayers) {
+    
+    public void startGame(long noPlayers) {
                 
         if (noPlayers != 1  &&  noPlayers != 2) {
             new CheckersError().displayError("startGame - invalid number of players specified.");
@@ -19,10 +22,10 @@ public void startGame(long noPlayers) {
         
         Game game;
         if (noPlayers == 1) {
-            game = this.create("ONE_PLAYER");
+            game = this.createGame("ONE_PLAYER");
         }
         else {
-            game = this.create("TWO_PLAYER");
+            game = this.createGame("TWO_PLAYER");
         }
 
         GameMenuView gameMenu = new GameMenuView(game);
@@ -31,7 +34,7 @@ public void startGame(long noPlayers) {
 
     
     
-    public Game create(String gameType) {
+    private Game createGame(String gameType) {
         Game game = null;
         Player playerA = null;
         Player playerB = null;
@@ -56,13 +59,32 @@ public void startGame(long noPlayers) {
             playerB.setName("Player 2");
 
         }
-        
-        
-        
+
         game.setPlayerA(playerA);
         game.setPlayerB(playerB);
         
         return game;
     } 
+    
+    
+    private String quitGame() {
+        System.out.println("\n\tAre you sure you want to quit? (Y or N)");
+        Scanner inFile = new Scanner(System.in);
+        String answer = inFile.next().trim().toUpperCase();
+        if (answer.equals("Y")) {
+            return Game.EXIT;
+        }
+
+        return Game.PLAYING;
+    }
+    
+    
+    /*
+     * Display help menu action
+     */
+    public void displayHelpMenu() {
+        HelpMenuView helpMenuView = new HelpMenuView();
+        helpMenuView.getInput();
+    }
     
 }

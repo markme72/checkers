@@ -16,16 +16,10 @@ import java.util.regex.Pattern;
 public class Location {
     private Game game;
     private Checkers checkers;
-    private Player player = null;
-    private Board board;
-    private Point boardLocation;
-    
-    public Location(Board board) {
-        this.board = board;
-    }
+
     
     public Point getMarkerLocation(Game game) {
-        Scanner input = checkers.getInput();
+        Scanner input = checkers.getInputFile();
         String coordinates[];
         Point location = null;
         
@@ -83,7 +77,7 @@ public class Location {
     }
     
     public Point getMoveLocation(Game game) {
-        Scanner input = checkers.getInput();
+        Scanner input = checkers.getInputFile();
         String coordinates[];
         Point location = null;
         
@@ -130,6 +124,8 @@ public class Location {
             int row = Integer.parseInt(coordinates[0]);
             int column = Integer.parseInt(coordinates[1]);
             
+            Board board = game.getBoard();
+            
             location = new Point(row-1, column-1);
             
             if (board.locationOccupied(location)) {
@@ -144,7 +140,4 @@ public class Location {
         return location;
     }
     
-    public void setLocation(int row, int col) {
-        this.boardLocation = new Point(row, col);
-    }
 }
