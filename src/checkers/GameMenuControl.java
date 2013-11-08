@@ -162,7 +162,7 @@ public class GameMenuControl {
      * @parameter player The player taking the turn
      */
     private int regularPlayerTurn(Player player) {
-        
+        boolean noJump = false;
         if (!this.game.getStatus().equals(Game.NEW_GAME)  &&
             !this.game.getStatus().equals(Game.PLAYING)) {
             new CheckersError().displayError(
@@ -182,7 +182,7 @@ public class GameMenuControl {
         if (moveLocation == null) { // no location was entered?
             return -1;
         }
-        this.game.getBoard().unoccupyLocation(this.game.getCurrentPlayer(), markerLocation.x, markerLocation.y);
+        this.game.getBoard().unoccupyLocation(this.game.getCurrentPlayer(), markerLocation.x, markerLocation.y, noJump);
         this.game.getBoard().occupyLocation(player, moveLocation.x, moveLocation.y);
         
         return 0;

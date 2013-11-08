@@ -108,20 +108,23 @@ public class Board {
         this.boardLocations[row][column] = player;
     }
     
-    public void unoccupyLocation(Player currentPlayer, int row, int column) {
+    public void unoccupyLocation(Player currentPlayer, int row, int column, Boolean canJump) {
         Player location = this.boardLocations[row][column];
+        if (canJump)
+            this.boardLocations[row][column] = null;
+        else {
             if (location == null) {
                 new CheckersError().displayError("There is no marker at this location. "
                     + "Try a different location.");
-        }
+            }
 
             if (!location.getMarker().equals(currentPlayer.getMarker())) {
                 new CheckersError().displayError("This is not your marker. "
                     + "Try a different location.");
-        }
+            }
                 this.boardLocations[row][column] = null;
+        }
     }
-     
     
     public boolean canMarkerMove(int x, int y, Player invalidSpaces, Player currentPlayer, Player otherPlayer) {
         Player[] corners = new Player[4];
@@ -146,7 +149,7 @@ public class Board {
                 if (corners[i] == null)
                     valid = true;
                 else {
-                    if(canJump(x, y, i, corners[i], currentPlayer))
+                    if(canJump(x - 2, y - 2, i, corners[i], currentPlayer) || canJump(x - 2, y + 2, i, corners[i], currentPlayer))
                         valid = true;
                 }
             }
@@ -171,7 +174,7 @@ public class Board {
                 if (corners[i] == null)
                     valid = true;
                 else {
-                    if (canJump(x, y, i, corners[i], currentPlayer))
+                    if (canJump(x + 2, y + 2, i, corners[i], currentPlayer) || canJump(x + 2, y - 2, i, corners[i], currentPlayer))
                         valid = true;
                 }
             }
@@ -208,7 +211,8 @@ public class Board {
                 if (corners[i] == null)
                     valid = true;
                 else {
-                    if (canJump(x, y, i, corners[i], currentPlayer))
+                    if (canJump(x + 2, y + 2, i, corners[i], currentPlayer) || canJump(x + 2, y - 2, i, corners[i], currentPlayer)
+                            || canJump(x - 2, y - 2, i, corners[i], currentPlayer) || canJump(x - 2, y + 2, i, corners[i], currentPlayer))
                         valid = true;
                 }
             }
@@ -222,10 +226,16 @@ public class Board {
         Point markerLocation = new Point(markerRow, markerCol);
         
         Point[] corners = new Point[4];
+        Point[] jumpCorners = new Point[4];
         corners[0] = new Point (x-1,y-1);
         corners[1] = new Point (x-1,y+1);
         corners[2] = new Point (x+1,y-1);
         corners[3] = new Point (x+1,y+1);
+        jumpCorners[0] = new Point (x-2,y-2);
+        jumpCorners[1] = new Point (x-2,y+2);
+        jumpCorners[2] = new Point (x+2,y-2);
+        jumpCorners[3] = new Point (x+2,y+2);
+        
         boolean valid = false;
         
         // Prevents "o" from moving backwards
@@ -233,26 +243,28 @@ public class Board {
             for (int i = 2; i < 4; i++) {
                 if (corners[i].equals(markerLocation))
                     valid = true;
-                else {
+                else if (jumpCorners[i].equals(markerLocation)){
                     if (corners[i].x >= 0 && corners[i].y >= 0 && corners[i].x <= 7 && corners[i].y <= 7){
-                        if (canJump(x, y, i, boardLocations[corners[i].x][corners[i].y], currentPlayer)){
+                        boolean validJump = canJump(x, y, i, boardLocations[corners[i].x][corners[i].y], currentPlayer);
+                        if (validJump){
                             valid = true;
-                            unoccupyLocation(currentPlayer, corners[i].x, corners[i].y);
+                            unoccupyLocation(currentPlayer, corners[i].x, corners[i].y,validJump);
                         }
                     }
                 }
             }
         }
         // Prevents "x" from moving backwards        
-        else if (currentPlayer.getMarker().equals("x")) {   
+        else if (currentPlayer.getMarker().equals("x")) {
             for (int i = 0; i < 2; i++) {
                 if (corners[i].equals(markerLocation))
                     valid = true;
-                else {                    
+                else if (jumpCorners[i].equals(markerLocation)){                    
                     if (corners[i].x >= 0 && corners[i].y >= 0 && corners[i].x <= 7 && corners[i].y <= 7){
-                        if (canJump(x, y, i, boardLocations[corners[i].x][corners[i].y], currentPlayer)){
+                        boolean validJump = canJump(x, y, i, boardLocations[corners[i].x][corners[i].y], currentPlayer);
+                        if (validJump){
                             valid = true;                            
-                            unoccupyLocation(currentPlayer, corners[i].x, corners[i].y);
+                            unoccupyLocation(currentPlayer, corners[i].x, corners[i].y, validJump);
                         }
                     }                
                 }
@@ -263,11 +275,12 @@ public class Board {
             for (int i = 0; i < 4; i++) {
                 if (corners[i].equals(markerLocation))
                     valid = true;                
-                else {      
+                else if (jumpCorners[i].equals(markerLocation)){      
                     if (corners[i].x >= 0 && corners[i].y >= 0 && corners[i].x <= 7 && corners[i].y <= 7){
-                        if (canJump(x, y, i, boardLocations[corners[i].x][corners[i].y], currentPlayer)){
+                        boolean validJump = canJump(x, y, i, boardLocations[corners[i].x][corners[i].y], currentPlayer);
+                        if (validJump){
                             valid = true;
-                            unoccupyLocation(currentPlayer, corners[i].x, corners[i].y);
+                            unoccupyLocation(currentPlayer, corners[i].x, corners[i].y, validJump);
                         }
                     }
                 }
@@ -279,7 +292,8 @@ public class Board {
     
     public Boolean canJump(int row, int col, int jumpCorner, Player corner, Player currentPlayer) {
         boolean valid = false;
-        
+        int jumpRow = -1;
+        int jumpCol = -1;
         // Check to see if the piece in its corner is of the same player
         if (currentPlayer == corner) {
             return valid;
@@ -288,20 +302,20 @@ public class Board {
         // Finds which corner the piece can jump
         switch (jumpCorner) {
             case 0:
-                row -= 2;
-                col -= 2;
+                jumpRow = row - 2;
+                jumpCol = col - 2;
                 break;
             case 1:
-                row -= 2;
-                col += 2;
+                jumpRow = row - 2;
+                jumpCol = col + 2;
                 break;
             case 2:
-                row += 2;
-                col -= 2;
+                jumpRow = row + 2;
+                jumpCol = col - 2;
                 break;
             case 3:
-                row += 2;
-                col += 2;
+                jumpRow = row + 2;
+                jumpCol = col + 2;
         }
         if (row >= 0 && col >= 0 && row <= 7 && col <= 7){
             if (boardLocations[row][col] == null){            
@@ -309,6 +323,14 @@ public class Board {
                 return valid;  
             }
         }
+        
+        else if (jumpRow >= 0 && jumpCol >= 0 && jumpRow <= 7 && jumpCol <= 7){
+            if (boardLocations[jumpRow][jumpCol] == null){            
+                valid = true;
+                return valid;  
+            }
+        }
+        
     
         return valid;
     }
