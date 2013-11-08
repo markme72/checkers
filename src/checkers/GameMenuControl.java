@@ -34,19 +34,25 @@ public class GameMenuControl {
     public void takeTurn() {
         
         int returnValue = 1;
-        if (this.game.getGameType().equals(Game.TWO_PLAYER)) { //two player game 
+        
+        if (!this.game.status.equals(Game.NEW_GAME)  && 
+            !this.game.status.equals(Game.PLAYING)) {
+            new CheckersError().displayError("You must start a new game first.");
+            return;
+        }
+        
+        if (this.game.gameType.equals(Game.TWO_PLAYER)) { //two player game 
             // regular player takes turn
-            returnValue = this.regularPlayerTurn(this.game.getCurrentPlayer());            
-            if (returnValue < 0  || this.gameOver(this.game.getCurrentPlayer())) {
+            returnValue = this.regularPlayerTurn(this.game.currentPlayer);            
+            if (returnValue < 0  || this.gameOver(this.game.currentPlayer)) {
                 return;
             }
             this.displayBoard();
             this.alternatePlayers(); // alternate players             
+            
             // other player takes turn 
-            
-            returnValue = this.regularPlayerTurn(this.game.getCurrentPlayer());
-            
-            if (returnValue < 0  || this.gameOver(this.game.getCurrentPlayer())) {
+            returnValue = this.regularPlayerTurn(this.game.currentPlayer);            
+            if (returnValue < 0  || this.gameOver(this.game.currentPlayer)) {
                 return;
             }
             this.displayBoard();
@@ -55,19 +61,18 @@ public class GameMenuControl {
         
         else { // one player game
             // regular player takes turn
-            this.regularPlayerTurn(this.game.getCurrentPlayer());
-            if (returnValue < 0  || this.gameOver(this.game.getCurrentPlayer())) {
+            this.regularPlayerTurn(this.game.currentPlayer);
+            if (returnValue < 0  || this.gameOver(this.game.currentPlayer)) {
                 return;
             }
         
             // computer takes turn         
-            /*this.coumputerTakesTurn(this.game.getOtherPlayer());
+            this.coumputerTakesTurn(this.game.otherPlayer);
             System.out.println("\n\tThe computer also took it's turn");
-            this.displayBoard();
-            
-            if (returnValue < 0  || this.gameOver(this.game.getOtherPlayer())) {
-                return;.
-            }*/
+            this.displayBoard();            
+            if (returnValue < 0  || this.gameOver(this.game.otherPlayer)) {
+                return;
+            }
         }
     
     }   
@@ -85,8 +90,9 @@ public class GameMenuControl {
      */
     public void startNewGame() {
         this.game.start();
-        this.displayBoard();
         this.board.setInvalidLocations(game);
+        this.board.setInitialLocations(game);
+        this.displayBoard();
     }
   
     
@@ -110,7 +116,7 @@ public class GameMenuControl {
      
      /*
       * Display game preferences menu action
-      */
+      */ 
     public void displayPreferencesMenu() {
         GamePreferencesMenuView gamePreferenceMenuView = new GamePreferencesMenuView(this.game);
         gamePreferenceMenuView.getInput();
@@ -176,7 +182,7 @@ public class GameMenuControl {
         if (moveLocation == null) { // no location was entered?
             return -1;
         }
-            
+        this.game.getBoard().unoccupyLocation(this.game.getCurrentPlayer(), markerLocation.x, markerLocation.y);
         this.game.getBoard().occupyLocation(player, moveLocation.x, moveLocation.y);
         
         return 0;

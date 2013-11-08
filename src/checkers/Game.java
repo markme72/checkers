@@ -11,8 +11,6 @@ public class Game {
     public final static String PLAYER_B_DEFAULT_MARKER = "o";
     public final static String INVALID_SPACE_DEFAULT_MARKER = "$";
     
-    
-    public static final String ONE_PLAYER = "ONE_PLAYER";
     public static final String TWO_PLAYER = "TWO_PLAYER";
     
     public static final String CONTINUE = "CONTINUE";
@@ -24,14 +22,14 @@ public class Game {
     public static final String ERROR = "ERROR";
     public static final String EXIT = "EXIT";
 
-    private String gameType;
-    private Player playerA;
-    private Player playerB;
-    private Player currentPlayer;
-    private Player otherPlayer;
+    public String gameType;
+    public Player playerA;
+    public Player playerB;
+    public Player currentPlayer;
+    public Player otherPlayer;
     private Player winner;
     private Player loser;
-    private String status;
+    public String status;
     private Board board;
     public Player invalidSpaces;
    
@@ -58,6 +56,10 @@ public class Game {
         
     }
 
+    public Player getInvalidSpaces() {
+        return invalidSpaces;
+    }
+    
     public String getGameType() {
         return gameType;
     }

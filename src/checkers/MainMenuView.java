@@ -14,12 +14,9 @@ import java.util.Scanner;
 
 public class MainMenuView {
     
-    private Game game;
-    
     
     private static final String[][] menuItems = {
-        {"1", "One player game"},
-        {"2", "Two player game"},
+        {"S", "Start Checkers"},
         {"H", "Help"},
         {"X", "Exit Checkers"}
     }; 
@@ -31,7 +28,7 @@ public class MainMenuView {
     
     public final void display() {
         System.out.println("\n\t===============================================================");
-        System.out.println("\tEnter the letter associated with one of the following commands:");
+        System.out.println("\tEnter the number associated with one of the following commands:");
 
         for (int i = 0; i < MainMenuView.menuItems.length; i++) {
             System.out.println("\t   " + menuItems[i][0] + "\t" + menuItems[i][1]);
@@ -78,10 +75,7 @@ public class MainMenuView {
             // get commaned entered
             String command = this.getCommand();
             switch (command) {
-                case "1":
-                    mainMenuControl.startGame(1);
-                    break;
-                case "2":
+                case "S":
                     mainMenuControl.startGame(2);
                     break;
                 case "H":

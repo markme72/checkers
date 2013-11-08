@@ -14,8 +14,9 @@ import java.util.regex.Pattern;
  * @author Mark Earl
  */
 public class Location {
-    private Game game;
     private Checkers checkers;
+    int markerRow;
+    int markerCol;
 
     
     public Point getMarkerLocation(Game game) {
@@ -26,7 +27,7 @@ public class Location {
         boolean valid = false;
         
         while(!valid) {
-            System.out.println(/*game.getCurrentPlayer().getName() + */"Fred, what is the location of the piece that you want to move?"
+            System.out.println(game.getCurrentPlayer().getName() + ", what is the location of the piece that you want to move?"
                     + " (e.g. 1 8 or 1,8)");
             String rowColumn = input.nextLine();
             rowColumn = rowColumn.trim();
@@ -62,12 +63,29 @@ public class Location {
                         "You must enter a number between 1-8 for both the row and column.");
                   continue;  
                 }
-            
+                
+            Board board = game.getBoard();
             
             int row = Integer.parseInt(coordinates[0]);
             int column = Integer.parseInt(coordinates[1]);
             
+            this.markerRow = Integer.parseInt(coordinates[0]);
+            this.markerCol = Integer.parseInt(coordinates[1]);
+
+            
             location = new Point(row-1, column-1);
+            
+            if (board.locationUnoccupied(location, game.getOtherPlayer(), game.getInvalidSpaces())) {
+                new CheckersError().displayError(
+                    "You do not have a marker here. Select another location");
+                continue;
+            }
+            
+            if (!board.canMarkerMove(row - 1, column - 1, game.getInvalidSpaces(), game.getCurrentPlayer(), game.getOtherPlayer())) {
+                new CheckersError().displayError(
+                        "This marker has no moves. Select another marker.");
+                continue;
+            }
                 
             valid = true;
             
@@ -84,7 +102,7 @@ public class Location {
         boolean valid = false;
         
         while(!valid) {
-            System.out.println(/*game.getCurrentPlayer().getName() + */"Fred, where would you like to move?"
+            System.out.println(game.getCurrentPlayer().getName() + ", where would you like to move?"
                     + " (e.g. 1 8 or 1,8)");
             String rowColumn = input.nextLine();
             rowColumn = rowColumn.trim();
@@ -133,6 +151,13 @@ public class Location {
                     "The current location is taken. Select another location");
                 continue;
             }
+            
+            if (!board.checkMoveLocation(row - 1, column - 1, this.markerRow - 1, this.markerCol - 1, game.getCurrentPlayer())) {
+                new CheckersError().displayError(
+                        "This marker cannot move here. Select another location.");
+                continue;
+            }
+                
             valid = true;
             
         }
