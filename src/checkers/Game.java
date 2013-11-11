@@ -8,8 +8,10 @@ package checkers;
 
 public class Game {
     public final static String PLAYER_A_DEFAULT_MARKER = "x";
-    
+    public final static String PLAYER_A_DEFAULT_KINGED_MARKER = "X";
     public final static String PLAYER_B_DEFAULT_MARKER = "o";
+    public final static String PLAYER_B_DEFAULT_KINGED_MARKER = "O";
+
     public final static String INVALID_SPACE_DEFAULT_MARKER = "$";
     
     public static final String TWO_PLAYER = "TWO_PLAYER";
@@ -44,7 +46,9 @@ public class Game {
        this.invalidSpaces = new Player();
        
        this.playerA.setMarker(Game.PLAYER_A_DEFAULT_MARKER);
+       this.playerA.setKingedMarker(Game.PLAYER_A_DEFAULT_KINGED_MARKER);       
        this.playerB.setMarker(Game.PLAYER_B_DEFAULT_MARKER);
+       this.playerB.setKingedMarker(Game.PLAYER_B_DEFAULT_KINGED_MARKER);       
        this.invalidSpaces.setMarker(Game.INVALID_SPACE_DEFAULT_MARKER);
     }
 
@@ -210,15 +214,20 @@ public class Game {
         if (player1 == 0) {
             this.winner = this.playerB;
             this.loser = this.playerA;
-            gameStatus = this.WINNER;
+            gameStatus = Game.WINNER;
             System.out.print(getWinningMessage());
             board.clearTheBoard();
         }
         else if (player2 == 0) {
             this.winner = this.playerA;
             this.loser = this.playerB;
-            gameStatus = this.WINNER;
+            gameStatus = Game.WINNER;
             System.out.print(getWinningMessage());
+            board.clearTheBoard();
+        }
+        else if (player1 == 1 && player2 == 1) {
+            gameStatus = Game.TIE;
+            System.out.print(getTiedMessage());
             board.clearTheBoard();
         }
         return gameStatus;

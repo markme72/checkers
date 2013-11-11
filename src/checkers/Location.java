@@ -44,7 +44,7 @@ public class Location {
                 continue;
                 }
             }
-            else if (coordinates[0].length() > 2 || coordinates[1].length() > 2 || coordinates.length > 2){
+            else if (coordinates[0].length() >= 2 || coordinates[1].length() >= 2 || coordinates.length > 2){
                 new CheckersError().displayError(
                         "You must enter a valid row and column, "
                         + "or a \"Q\" to quit.");
@@ -52,10 +52,8 @@ public class Location {
                 }
             
             // Checks if row is a number 1-8
-            Pattern pattern = Pattern.compile("[1-8]");
-                if (pattern.matcher(coordinates[0]).matches() && pattern.matcher(coordinates[1]).matches())
-                {}
-                else {
+            Pattern pattern = Pattern.compile("[^1-8]");
+                if (pattern.matcher(coordinates[0]).matches() && pattern.matcher(coordinates[1]).matches()){
                   new CheckersError().displayError(
                         "You must enter a number between 1-8 for both the row and column.");
                   continue;  
@@ -117,7 +115,7 @@ public class Location {
                 }
             } 
             
-            else if (coordinates[0].length() > 2 || coordinates[1].length() > 2 || coordinates.length > 2){
+            else if (coordinates[0].length() >= 2 || coordinates[1].length() >= 2 || coordinates.length > 2){
                 new CheckersError().displayError(
                         "You must enter a valid row and column, "
                         + "or a \"Q\" to quit.");
@@ -126,10 +124,8 @@ public class Location {
 
             
             // Checks if row is a number 1-8
-            Pattern pattern = Pattern.compile("[1-8]");
-                if (pattern.matcher(coordinates[0]).matches() && pattern.matcher(coordinates[1]).matches())
-                {}
-                else {
+            Pattern pattern = Pattern.compile("[^1-8]");
+                if (pattern.matcher(coordinates[0]).matches() && pattern.matcher(coordinates[1]).matches()){
                     new CheckersError().displayError(
                         "You must enter a number between 1-8 for the row.");
                     continue;  

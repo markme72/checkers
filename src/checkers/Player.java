@@ -1,9 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package checkers;
-
 
 /**
  *
@@ -12,7 +7,6 @@ package checkers;
 public class Player {
 
     public static final String REGULAR_PLAYER = "REGULAR";
-    public static final String COMPUTER_PLAYER = "COMPUTER"; 
     
     private String name;
     private double age;
@@ -22,8 +16,6 @@ public class Player {
     private long ties = 0;
     private String marker;
     private int numOfMarkers = 12;
-    
-    
 
     public Player() {
     }
@@ -80,6 +72,10 @@ public class Player {
 
     public void setMarker(String marker) {
         this.marker = marker;
+    }
+    
+    public void setKingedMarker(String kingedMarker) {
+        this.marker = kingedMarker;
     }
 
     public long getTies() {

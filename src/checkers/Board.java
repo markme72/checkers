@@ -51,15 +51,9 @@ public class Board {
         this.boardLocations = boardLocations;
     }
 
-    public Object getValueAt(int rowIndex, int columnIndex) {
-        return boardLocations[rowIndex][columnIndex];
-    } 
-   
-
     public Player getPlayerAt(int row, int column) {
         return this.boardLocations[row][column];
     }
-
 
     public void clearTheBoard() {
         for (int i = 0; i < this.boardLocations.length; i++) {
@@ -306,6 +300,20 @@ public class Board {
             }
         }
         return valid;
+    }
+    
+    public void kingMe(Player playerA, Player playerB) {
+        for (int i = 0; i < boardLocations[0].length; i += 2) {
+            if (boardLocations[0][i] == playerB) {
+                boardLocations[0][i].setKingedMarker("O");
+            }
+        }
+        
+        for (int i = 1; i < boardLocations[7].length; i += 2) {
+            if (boardLocations[7][i] == playerA) {
+                boardLocations[7][i].setKingedMarker("X");
+            }
+        }
     }
     
     public void setInvalidLocations(Game game) {

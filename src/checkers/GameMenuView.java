@@ -49,6 +49,8 @@ public class GameMenuView {
             switch (command) {
                 case "1":
                     this.gameMenuControl.takeTurn();
+                    
+                    // Checks for a winner
                     if (this.game.getStatus().equals(Game.PLAYING)) {
                         this.game.setStatus(this.game.checkForWin(this.game.getBoard().getBoardLocations(), 
                                             this.game.getCurrentPlayer(), this.game.getStatus()));

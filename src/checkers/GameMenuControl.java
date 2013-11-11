@@ -50,6 +50,7 @@ public class GameMenuControl {
             // other player takes turn 
             returnValue = this.regularPlayerTurn(this.game.currentPlayer);            
 
+            this.game.getBoard().kingMe(game.getPlayerA(), game.getPlayerB());
             this.displayBoard();
             this.alternatePlayers(); // alternate players
             
