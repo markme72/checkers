@@ -40,42 +40,20 @@ public class GameMenuControl {
             new CheckersError().displayError("You must start a new game first.");
             return;
         }
-        
-        if (this.game.gameType.equals(Game.TWO_PLAYER)) { //two player game 
+         
             // regular player takes turn
             returnValue = this.regularPlayerTurn(this.game.currentPlayer);            
-            if (returnValue < 0  || this.gameOver(this.game.currentPlayer)) {
-                return;
-            }
+
             this.displayBoard();
             this.alternatePlayers(); // alternate players             
             
             // other player takes turn 
             returnValue = this.regularPlayerTurn(this.game.currentPlayer);            
-            if (returnValue < 0  || this.gameOver(this.game.currentPlayer)) {
-                return;
-            }
+
             this.displayBoard();
             this.alternatePlayers(); // alternate players
-        }
-        
-        else { // one player game
-            // regular player takes turn
-            this.regularPlayerTurn(this.game.currentPlayer);
-            if (returnValue < 0  || this.gameOver(this.game.currentPlayer)) {
-                return;
-            }
-        
-            // computer takes turn         
-            this.coumputerTakesTurn(this.game.otherPlayer);
-            System.out.println("\n\tThe computer also took it's turn");
-            this.displayBoard();            
-            if (returnValue < 0  || this.gameOver(this.game.otherPlayer)) {
-                return;
-            }
-        }
-    
-    }   
+            
+    }
     
     
     /*
@@ -131,25 +109,7 @@ public class GameMenuControl {
         helpMenuView.getInput();
     }
     
-    /* 
-     * determine if the game is over
-     * @return true - if the game is a win or a tie; otherwise, return false
-     */    
-    private boolean gameOver(Player player) {
-        /*if (this.isWinner()) {
-            this.game.setStatus(Game.WINNER);
-            this.displayGameOverMessage(player, "Congratulations! You won the game.");
-            
-            return true;
-        }
-        else if (this.isTie()) {
-            this.game.setStatus(Game.TIE);
-            this.displayGameOverMessage(player, "Better luck next time. The game is a tie.");
-            return true;
-        } 
-        */
-        return false;
-    }
+
     
     private void displayGameOverMessage(Player player, String message) {
         System.out.println("\n\t************************************************");

@@ -14,13 +14,12 @@ import java.util.regex.Pattern;
  * @author Mark Earl
  */
 public class Location {
-    private Checkers checkers;
     int markerRow;
     int markerCol;
 
     
     public Point getMarkerLocation(Game game) {
-        Scanner input = checkers.getInputFile();
+        Scanner input = Checkers.getInputFile();
         String coordinates[];
         Point location = null;
         
@@ -34,36 +33,33 @@ public class Location {
             rowColumn = rowColumn.replace(',', ' ');
             coordinates = rowColumn.split("\\s");
             
-            if (coordinates.length < 1) {
-                new CheckersError().displayError(
-                        "You must enter the row and the column, "
-                        + "or a \"Q\" to quit.");
-                continue;
-            } 
-                        
-            else if (coordinates.length == 1) { 
+            if (coordinates.length == 1) { 
                 if (coordinates[0].toUpperCase().equals("Q")) {
                     return null;
                 } 
-            else {
-                new CheckersError().displayError(
-                        "You must enter the row and the column, "
+                else {
+                    new CheckersError().displayError(
+                        "You must enter a valid row and column, "
                         + "or a \"Q\" to quit.");
                 continue;
                 }
             }
+            else if (coordinates[0].length() > 2 || coordinates[1].length() > 2 || coordinates.length > 2){
+                new CheckersError().displayError(
+                        "You must enter a valid row and column, "
+                        + "or a \"Q\" to quit.");
+                continue;
+                }
             
             // Checks if row is a number 1-8
             Pattern pattern = Pattern.compile("[1-8]");
-                if (pattern.matcher(coordinates[0]).matches() || pattern.matcher(coordinates[1]).matches())
+                if (pattern.matcher(coordinates[0]).matches() && pattern.matcher(coordinates[1]).matches())
                 {}
                 else {
-                
                   new CheckersError().displayError(
                         "You must enter a number between 1-8 for both the row and column.");
                   continue;  
                 }
-                
             Board board = game.getBoard();
             
             int row = Integer.parseInt(coordinates[0]);
@@ -95,7 +91,7 @@ public class Location {
     }
     
     public Point getMoveLocation(Game game) {
-        Scanner input = checkers.getInputFile();
+        Scanner input = Checkers.getInputFile();
         String coordinates[];
         Point location = null;
         
@@ -107,36 +103,36 @@ public class Location {
             String rowColumn = input.nextLine();
             rowColumn = rowColumn.trim();
             rowColumn = rowColumn.replace(',', ' ');
-            coordinates = rowColumn.split("\\s");
-            
-            if (coordinates.length < 1) {
-                new CheckersError().displayError(
-                        "You must enter the row and the column, "
-                        + "or a \"Q\" to quit.");
-                continue;
-            } 
+            coordinates = rowColumn.split("\\s"); 
                         
-            else if (coordinates.length == 1) { 
+            if (coordinates.length == 1) { 
                 if (coordinates[0].toUpperCase().equals("Q")) {
                     return null;
-                } 
-            else {
-                new CheckersError().displayError(
+                }
+                else {
+                    new CheckersError().displayError(
                         "You must enter the row and the column, "
                         + "or a \"Q\" to quit.");
                 continue;
                 }
+            } 
+            
+            else if (coordinates[0].length() > 2 || coordinates[1].length() > 2 || coordinates.length > 2){
+                new CheckersError().displayError(
+                        "You must enter a valid row and column, "
+                        + "or a \"Q\" to quit.");
+                continue;
             }
+
             
             // Checks if row is a number 1-8
             Pattern pattern = Pattern.compile("[1-8]");
-                if (pattern.matcher(coordinates[0]).matches() || pattern.matcher(coordinates[1]).matches())
+                if (pattern.matcher(coordinates[0]).matches() && pattern.matcher(coordinates[1]).matches())
                 {}
                 else {
-                
-                  new CheckersError().displayError(
+                    new CheckersError().displayError(
                         "You must enter a number between 1-8 for the row.");
-                  continue;  
+                    continue;  
                 }
                 
             int row = Integer.parseInt(coordinates[0]);

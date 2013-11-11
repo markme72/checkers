@@ -292,46 +292,19 @@ public class Board {
     
     public Boolean canJump(int row, int col, int jumpCorner, Player corner, Player currentPlayer) {
         boolean valid = false;
-        int jumpRow = -1;
-        int jumpCol = -1;
+
         // Check to see if the piece in its corner is of the same player
         if (currentPlayer == corner) {
             return valid;
         }
-        
-        // Finds which corner the piece can jump
-        switch (jumpCorner) {
-            case 0:
-                jumpRow = row - 2;
-                jumpCol = col - 2;
-                break;
-            case 1:
-                jumpRow = row - 2;
-                jumpCol = col + 2;
-                break;
-            case 2:
-                jumpRow = row + 2;
-                jumpCol = col - 2;
-                break;
-            case 3:
-                jumpRow = row + 2;
-                jumpCol = col + 2;
-        }
+
+        // If the chosen location is null then they can jump
         if (row >= 0 && col >= 0 && row <= 7 && col <= 7){
             if (boardLocations[row][col] == null){            
                 valid = true;
                 return valid;  
             }
         }
-        
-        else if (jumpRow >= 0 && jumpCol >= 0 && jumpRow <= 7 && jumpCol <= 7){
-            if (boardLocations[jumpRow][jumpCol] == null){            
-                valid = true;
-                return valid;  
-            }
-        }
-        
-    
         return valid;
     }
     

@@ -8,6 +8,7 @@ package checkers;
 
 public class Game {
     public final static String PLAYER_A_DEFAULT_MARKER = "x";
+    
     public final static String PLAYER_B_DEFAULT_MARKER = "o";
     public final static String INVALID_SPACE_DEFAULT_MARKER = "$";
     
@@ -191,7 +192,37 @@ public class Game {
        
     }
 
-
+    public String checkForWin(Player[][] boardLocations, Player player, String gameStatus) {
+        int player1 = 0;
+        int player2 = 0;
+        
+        for (int row = 0; row < boardLocations.length; row+= 1) {
+            for (int col = 0; col < boardLocations[row].length; col+= 2) {
+                if (boardLocations[row][col] == invalidSpaces)
+                    col = 1;
+                if (boardLocations[row][col] == player)
+                    player1++;
+                else
+                    player2++;
+            }
+        }
+        
+        if (player1 == 0) {
+            this.winner = this.playerB;
+            this.loser = this.playerA;
+            gameStatus = this.WINNER;
+            System.out.print(getWinningMessage());
+            board.clearTheBoard();
+        }
+        else if (player2 == 0) {
+            this.winner = this.playerA;
+            this.loser = this.playerB;
+            gameStatus = this.WINNER;
+            System.out.print(getWinningMessage());
+            board.clearTheBoard();
+        }
+        return gameStatus;
+    }
 
     public String getWinningMessage () {
         return "\n\t*******************************************************************************"

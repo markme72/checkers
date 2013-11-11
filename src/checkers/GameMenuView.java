@@ -38,17 +38,22 @@ public class GameMenuView {
         this.game = (Game) object;
 
         this.game.setStatus(Game.CONTINUE);
-        
+
         String gameStatus = this.game.getStatus();
+
         do {
-     
             this.display();
-            
+        
             // get commaned entered
             String command = this.getCommand();
             switch (command) {
                 case "1":
                     this.gameMenuControl.takeTurn();
+                    if (this.game.getStatus().equals(Game.PLAYING)) {
+                        this.game.setStatus(this.game.checkForWin(this.game.getBoard().getBoardLocations(), 
+                                            this.game.getCurrentPlayer(), this.game.getStatus()));
+                        gameStatus = this.game.getStatus();
+                    }
                     break;
                 case "2":
                     this.gameMenuControl.displayBoard();
@@ -71,9 +76,9 @@ public class GameMenuView {
                 case "Q":
                     gameStatus = "QUIT";
                     break;
-            }
-        } while (!gameStatus.equals("QUIT"));
-
+            }  
+        } while (!gameStatus.equals("QUIT") && !gameStatus.equals(Game.WINNER));
+        
         return Game.PLAYING;
     }
     
