@@ -30,8 +30,6 @@ public class BoardView {
         }
         
         System.out.println(); // print blank line after the board
-         
-        return;
     }
 
     private void printHeadRow() {
@@ -71,7 +69,7 @@ public class BoardView {
             letter = " |||||";
         }
         
-        if (rowLocations[0] != null && rowLocations[0].getMarker() != "$") {
+        if (rowLocations[0] != null && !rowLocations[0].getMarker().equals("$")) {
             letter = "   " + rowLocations[0].getMarker() + "   ";
         }
         System.out.print("\n\t" + rowNumber + " |" + letter);

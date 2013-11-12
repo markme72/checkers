@@ -32,7 +32,9 @@ public class MainMenuControl {
     private Game createGame(String gameType) {
         Game game = null;
         Player playerA = null;
+        Player kingedPlayerA = null;
         Player playerB = null;
+        Player kingedPlayerB = null;
         
         if (gameType == null) {
             new CheckersError().displayError("MainCommands - create: gameType is null");
@@ -41,15 +43,21 @@ public class MainMenuControl {
         
 
         game = new Game(Game.TWO_PLAYER);
-        playerA = new Player(Player.REGULAR_PLAYER, game.PLAYER_A_DEFAULT_MARKER);
+        playerA = new Player(Player.REGULAR_PLAYER, Game.PLAYER_A_DEFAULT_MARKER);
         playerA.setName("Player 1");
-        playerB = new Player(Player.REGULAR_PLAYER, game.PLAYER_B_DEFAULT_MARKER);
+        kingedPlayerA = new Player(Player.REGULAR_PLAYER, Game.PLAYER_A_DEFAULT_KINGED_MARKER);
+        kingedPlayerA.setName("Player 1");
+        playerB = new Player(Player.REGULAR_PLAYER, Game.PLAYER_B_DEFAULT_MARKER);
         playerB.setName("Player 2");
+        kingedPlayerB = new Player(Player.REGULAR_PLAYER, Game.PLAYER_B_DEFAULT_KINGED_MARKER);
+        kingedPlayerB.setName("Player 1");
 
 
 
         game.setPlayerA(playerA);
+        game.setKingedPlayerA(kingedPlayerA);
         game.setPlayerB(playerB);
+        game.setKingedPlayerB(kingedPlayerB);
         
         return game;
     } 

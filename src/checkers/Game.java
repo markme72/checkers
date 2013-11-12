@@ -25,16 +25,20 @@ public class Game {
     public static final String ERROR = "ERROR";
     public static final String EXIT = "EXIT";
 
-    public String gameType;
-    public Player playerA;
-    public Player playerB;
-    public Player currentPlayer;
-    public Player otherPlayer;
+    private String gameType;
+    private Player playerA;
+    private Player kingedPlayerA;
+    private Player kingedPlayerB;    
+    private Player playerB;
+    private Player currentPlayer;
+    private Player kingedCurrentPlayer;
+    private Player otherPlayer;
+    private Player kingedOtherPlayer;
     private Player winner;
     private Player loser;
-    public String status;
+    private String status;
     private Board board;
-    public Player invalidSpaces;
+    private Player invalidSpaces;
    
 
     
@@ -43,6 +47,8 @@ public class Game {
    
        this.playerA = new Player();
        this.playerB = new Player();
+       this.kingedPlayerA = new Player();
+       this.kingedPlayerB = new Player();
        this.invalidSpaces = new Player();
        
        this.playerA.setMarker(Game.PLAYER_A_DEFAULT_MARKER);
@@ -59,6 +65,38 @@ public class Game {
         this.board = new Board(8, 8);
         
         
+    }
+    
+    public void setKingedCurrentPlayer(Player kingedCurrentPlayer) {
+        this.kingedCurrentPlayer = kingedCurrentPlayer;
+    }
+
+    public void setKingedOtherPlayer(Player kingedOtherPlayer) {
+        this.kingedOtherPlayer = kingedOtherPlayer;
+    }
+
+    public Player getKingedCurrentPlayer() {
+        return kingedCurrentPlayer;
+    }
+
+    public Player getKingedOtherPlayer() {
+        return kingedOtherPlayer;
+    }
+    
+    public void setKingedPlayerA(Player kingedPlayerA) {
+        this.kingedPlayerA = kingedPlayerA;
+    }
+
+    public void setKingedPlayerB(Player kingedPlayerB) {
+        this.kingedPlayerB = kingedPlayerB;
+    }
+
+    public Player getKingedPlayerA() {
+        return kingedPlayerA;
+    }
+
+    public Player getKingedPlayerB() {
+        return kingedPlayerB;
     }
 
     public Player getInvalidSpaces() {
@@ -142,26 +180,19 @@ public class Game {
 
     public void start() {
 
-        this.setPlayingOrder(playerA, playerB);
+        this.setPlayingOrder(playerA, playerB, kingedPlayerA, kingedPlayerB);
 
         // clear the board
         this.board.clearTheBoard();
         this.setStatus(Game.NEW_GAME);
-        this.setPlayingOrder(this.playerA, this.playerB);
+        this.setPlayingOrder(this.playerA, this.playerB, this.kingedPlayerA, this.kingedPlayerB);
     }
 
-    public void setPlayingOrder(Player player1, Player player2) {
-
-        double randomValue = Math.random();
-
-        if (randomValue < 0.5) {
+    public void setPlayingOrder(Player player1, Player player2, Player kingedPlayerA, Player kingedPlayerB) {
             this.currentPlayer = player1;
+            this.kingedCurrentPlayer = kingedPlayerA;
             this.otherPlayer = player2;
-        } else {
-            this.otherPlayer = player2;
-            this.currentPlayer = player1;
-        }
-
+            this.kingedOtherPlayer = kingedPlayerB;
     }
 
     public void recordWinner() {

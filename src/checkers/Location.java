@@ -14,8 +14,8 @@ import java.util.regex.Pattern;
  * @author Mark Earl
  */
 public class Location {
-    int markerRow;
-    int markerCol;
+    private int markerRow;
+    private int markerCol;
 
     
     public Point getMarkerLocation(Game game) {
@@ -69,7 +69,7 @@ public class Location {
             
             location = new Point(row-1, column-1);
             
-            if (board.locationUnoccupied(location, game.getOtherPlayer(), game.getInvalidSpaces())) {
+            if (board.locationUnoccupied(location, game.getOtherPlayer(), game.getInvalidSpaces(), game.getKingedOtherPlayer())) {
                 new CheckersError().displayError(
                     "You do not have a marker here. Select another location");
                 continue;
