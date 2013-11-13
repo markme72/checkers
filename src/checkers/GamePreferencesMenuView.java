@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package checkers;
 
 
@@ -84,10 +80,8 @@ public class GamePreferencesMenuView  {
             
             switch (command) {
                 case "1":
-                    this.gamePreferenceControl.getMarker(this.game.getPlayerA());
                     break;
                 case "2":
-                    this.gamePreferenceControl.getMarker(this.game.getPlayerB());
                     break;
                 case "Q":
                     return "QUIT";

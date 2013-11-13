@@ -145,7 +145,7 @@ public class GameMenuControl {
         }
         
         this.game.getBoard().occupyLocation(player, markerLocation.x, markerLocation.y, moveLocation.x, moveLocation.y);
-        this.game.getBoard().unoccupyLocation(this.game.getCurrentPlayer(), markerLocation.x, markerLocation.y, noJump);        
+        this.game.getBoard().unoccupyLocation(game, markerLocation.x, markerLocation.y, noJump);        
         return 0;
     }
 

@@ -75,7 +75,7 @@ public class Location {
                 continue;
             }
             
-            if (!board.canMarkerMove(row - 1, column - 1, game.getInvalidSpaces(), game.getCurrentPlayer(), game.getOtherPlayer())) {
+            if (!board.canMarkerMove(row - 1, column - 1, game)) {
                 new CheckersError().displayError(
                         "This marker has no moves. Select another marker.");
                 continue;
@@ -144,7 +144,7 @@ public class Location {
                 continue;
             }
             
-            if (!board.checkMoveLocation(row - 1, column - 1, this.markerRow - 1, this.markerCol - 1, game.getCurrentPlayer())) {
+            if (!board.checkMoveLocation(row - 1, column - 1, this.markerRow - 1, this.markerCol - 1, game)) {
                 new CheckersError().displayError(
                         "This marker cannot move here. Select another location.");
                 continue;
