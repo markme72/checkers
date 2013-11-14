@@ -53,7 +53,7 @@ public class GameMenuView {
                     // Checks for a winner
                     if (this.game.getStatus().equals(Game.PLAYING)) {
                         this.game.setStatus(this.game.checkForWin(this.game.getBoard().getBoardLocations(), 
-                                            this.game.getCurrentPlayer(), this.game.getStatus()));
+                                            this.game.getStatus()));
                         gameStatus = this.game.getStatus();
                     }
                     break;

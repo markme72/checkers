@@ -13,26 +13,15 @@ import java.awt.Point;
  * @author Mark Earl, Ryan Plumb, Mike Coleman
  */
 public class Board {
-    private int rowCount = 8;
-    private int columnCount = 8;
-    private String name;
-    private Point boardDimensions = new Point();
+    private final int rowCount = 8;
+    private final int columnCount = 8;
     private Player[][] boardLocations;
 
     public Board() {
     }
 
     public Board(int noRows, int noColumns) {
-        this.boardDimensions.setLocation(noRows, noRows);
         this.boardLocations = new Player[noRows][noColumns];
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
     
     public int getRowCount() {

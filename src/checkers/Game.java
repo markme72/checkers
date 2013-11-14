@@ -4,6 +4,8 @@
  */
 package checkers;
 
+import java.util.Objects;
+
 
 
 public class Game {
@@ -39,9 +41,6 @@ public class Game {
     private String status;
     private Board board;
     private Player invalidSpaces;
-   
-
-    
 
     public Game() {
    
@@ -175,8 +174,79 @@ public class Game {
         this.board = board;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 79 * hash + Objects.hashCode(this.gameType);
+        hash = 79 * hash + Objects.hashCode(this.playerA);
+        hash = 79 * hash + Objects.hashCode(this.kingedPlayerA);
+        hash = 79 * hash + Objects.hashCode(this.kingedPlayerB);
+        hash = 79 * hash + Objects.hashCode(this.playerB);
+        hash = 79 * hash + Objects.hashCode(this.currentPlayer);
+        hash = 79 * hash + Objects.hashCode(this.kingedCurrentPlayer);
+        hash = 79 * hash + Objects.hashCode(this.otherPlayer);
+        hash = 79 * hash + Objects.hashCode(this.kingedOtherPlayer);
+        hash = 79 * hash + Objects.hashCode(this.winner);
+        hash = 79 * hash + Objects.hashCode(this.loser);
+        hash = 79 * hash + Objects.hashCode(this.status);
+        hash = 79 * hash + Objects.hashCode(this.board);
+        hash = 79 * hash + Objects.hashCode(this.invalidSpaces);
+        return hash;
+    }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Game other = (Game) obj;
+        if (!Objects.equals(this.gameType, other.gameType)) {
+            return false;
+        }
+        if (!Objects.equals(this.playerA, other.playerA)) {
+            return false;
+        }
+        if (!Objects.equals(this.kingedPlayerA, other.kingedPlayerA)) {
+            return false;
+        }
+        if (!Objects.equals(this.kingedPlayerB, other.kingedPlayerB)) {
+            return false;
+        }
+        if (!Objects.equals(this.playerB, other.playerB)) {
+            return false;
+        }
+        if (!Objects.equals(this.currentPlayer, other.currentPlayer)) {
+            return false;
+        }
+        if (!Objects.equals(this.kingedCurrentPlayer, other.kingedCurrentPlayer)) {
+            return false;
+        }
+        if (!Objects.equals(this.otherPlayer, other.otherPlayer)) {
+            return false;
+        }
+        if (!Objects.equals(this.kingedOtherPlayer, other.kingedOtherPlayer)) {
+            return false;
+        }
+        if (!Objects.equals(this.winner, other.winner)) {
+            return false;
+        }
+        if (!Objects.equals(this.loser, other.loser)) {
+            return false;
+        }
+        if (!Objects.equals(this.status, other.status)) {
+            return false;
+        }
+        if (!Objects.equals(this.board, other.board)) {
+            return false;
+        }
+        if (!Objects.equals(this.invalidSpaces, other.invalidSpaces)) {
+            return false;
+        }
+        return true;
+    }
 
     public void start() {
 
@@ -188,7 +258,7 @@ public class Game {
         this.setPlayingOrder(this.playerA, this.playerB, this.kingedPlayerA, this.kingedPlayerB);
     }
 
-    public void setPlayingOrder(Player player1, Player player2, Player kingedPlayerA, Player kingedPlayerB) {
+    private void setPlayingOrder(Player player1, Player player2, Player kingedPlayerA, Player kingedPlayerB) {
             this.currentPlayer = player1;
             this.kingedCurrentPlayer = kingedPlayerA;
             this.otherPlayer = player2;
@@ -227,7 +297,7 @@ public class Game {
        
     }
 
-    public String checkForWin(Player[][] boardLocations, Player player, String gameStatus) {
+    public String checkForWin(Player[][] boardLocations, String gameStatus) {
         int player1 = 0;
         int player2 = 0;
         
@@ -235,7 +305,7 @@ public class Game {
             for (int col = 0; col < boardLocations[row].length; col+= 2) {
                 if (boardLocations[row][col] == invalidSpaces)
                     col = 1;
-                if (boardLocations[row][col] == player)
+                if (boardLocations[row][col] == this.playerA || boardLocations[row][col] == this.kingedPlayerA)
                     player1++;
                 else
                     player2++;
@@ -264,14 +334,14 @@ public class Game {
         return gameStatus;
     }
 
-    public String getWinningMessage () {
+    private String getWinningMessage () {
         return "\n\t*******************************************************************************"
              + "\n\t Congratulations " + winner.getName() + "! You won the game."
              + "\n\t Sorry " + loser.getName() + ", You are the loser." 
              + "\n\t*******************************************************************************";
     }
 
-    public String getTiedMessage () {
+    private String getTiedMessage () {
        return "\n\t*******************************************************************************"
              + "\n\t The game is a tie. Better luck next time!" 
              + "\n\t*******************************************************************************";

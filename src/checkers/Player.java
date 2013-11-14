@@ -9,13 +9,12 @@ public class Player {
     public static final String REGULAR_PLAYER = "REGULAR";
     
     private String name;
-    private double age;
     private String playerType;
     private long wins = 0;
     private long losses = 0;
     private long ties = 0;
     private String marker;
-    private int numOfMarkers = 12;
+    private static int numOfMarkers = 12;
 
     public Player() {
     }
@@ -28,15 +27,6 @@ public class Player {
     public String getName() {
         return name;
     }
-
-    public double getAge() {
-        return age;
-    }
-
-    public void setAge(double age) {
-        this.age = age;
-    }
-
     
     public void setName(String name) {
         this.name = name;
