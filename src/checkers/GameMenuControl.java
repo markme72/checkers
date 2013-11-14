@@ -26,6 +26,10 @@ public class GameMenuControl {
         this.game = game;
         this.board = game.getBoard();
     }
+
+    public BoardView getBoardView() {
+        return boardView;
+    }
     
      
     /* 

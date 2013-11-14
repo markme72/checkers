@@ -48,6 +48,7 @@ public class GameMenuView {
             String command = this.getCommand();
             switch (command) {
                 case "1":
+                    this.gameMenuControl.getBoardView().displayBoard(this.game.getBoard());
                     this.gameMenuControl.takeTurn();
                     
                     // Checks for a winner
