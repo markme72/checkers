@@ -93,6 +93,10 @@ public class Board {
     public boolean canMarkerMove(int x, int y, Game game) {
         Player[] corners = new Player[4];
         boolean valid = false;
+        boolean jump0 = false;
+        boolean jump1 = false;
+        boolean jump2 = false;
+        boolean jump3 = false;
         
         // Checks for valid moves for "o" player
         if (game.getCurrentPlayer().getMarker().equals("o") && boardLocations[x][y].getMarker().equals("o")) {     
@@ -175,12 +179,24 @@ public class Board {
                 if (corners[i] == null)
                     valid = true;
                 else {
-                        if (canJump(x + 2, y + 2, i, corners[i], game) || canJump(x + 2, y - 2, i, corners[i], game)
-                            || canJump(x - 2, y - 2, i, corners[i], game) || canJump(x - 2, y + 2, i, corners[i], game))
-                        valid = true;
-                    
+                    switch (i) {
+                        case 0:
+                            jump0 = canJump(x - 2, y - 2, i, corners[i], game);
+                            break;
+                        case 1: 
+                            jump1 = canJump(x - 2, y + 2, i, corners[i], game);
+                            break;
+                        case 2:    
+                            jump2 = canJump(x + 2, y - 2, i, corners[i], game);
+                            break;
+                        case 3:    
+                            jump3 = canJump(x + 2, y + 2, i, corners[i], game);
+                            break;
+                    }
                 }
             }
+            if (jump0 || jump1 || jump2 || jump3)
+                valid = true;
         }
 
         
