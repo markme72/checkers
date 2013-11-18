@@ -26,7 +26,7 @@ public class MainMenuView {
     public MainMenuView() {
     }
     
-    public final void display() {
+    private final void display() {
         System.out.println("\n\t===============================================================");
         System.out.println("\tEnter the number associated with one of the following commands:");
 
@@ -47,7 +47,7 @@ public class MainMenuView {
         return false;
     }
 
-    protected final String getCommand() {
+    private final String getCommand() {
 
         Scanner inFile = Checkers.getInputFile();
         String command;

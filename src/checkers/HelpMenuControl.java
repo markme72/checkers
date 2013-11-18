@@ -91,7 +91,7 @@ public class HelpMenuControl {
         displayHelpBoarder();
     }
     
-    public void displayHelpBoarder() {       
+    private void displayHelpBoarder() {       
         System.out.println(
         "\t************************************************************************");
     }
