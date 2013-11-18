@@ -4,7 +4,7 @@ import java.awt.Dimension;
 
 /**
  *
- * @author Mark Earl, Ryan Plumb, Mike Coleman
+ * @author Mark Earl, Ryan Plumb
  */
 public class GamePreferencesMenuControl {
     

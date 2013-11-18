@@ -7,7 +7,7 @@ package checkers;
 
 /**
  *
- * @author Mark Earl
+ * @author Mark Earl, Ryan Plumb
  */
 public class CheckersError {
 

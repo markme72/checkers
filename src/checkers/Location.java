@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package checkers;
 
 import java.awt.Point;
@@ -11,11 +6,13 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author Mark Earl
+ * @author Mark Earl, Ryan Plumb
  */
 public class Location {
     private int markerRow;
     private int markerCol;
+    private int moveRow;
+    private int moveCol;
 
     
     public Point getMarkerLocation(Game game) {
@@ -134,6 +131,9 @@ public class Location {
             int row = Integer.parseInt(coordinates[0]);
             int column = Integer.parseInt(coordinates[1]);
             
+            this.moveRow = Integer.parseInt(coordinates[0]);
+            this.moveCol = Integer.parseInt(coordinates[1]);
+            
             Board board = game.getBoard();
             
             location = new Point(row-1, column-1);
@@ -156,5 +156,73 @@ public class Location {
         
         return location;
     }
+
+    public int getMarkerRow() {
+        return markerRow;
+    }
+
+    public void setMarkerRow(int markerRow) {
+        this.markerRow = markerRow;
+    }
+
+    public int getMarkerCol() {
+        return markerCol;
+    }
+
+    public void setMarkerCol(int markerCol) {
+        this.markerCol = markerCol;
+    }
+
+    public int getMoveRow() {
+        return moveRow;
+    }
+
+    public void setMoveRow(int moveRow) {
+        this.moveRow = moveRow;
+    }
+
+    public int getMoveCol() {
+        return moveCol;
+    }
+
+    public void setMoveCol(int moveCol) {
+        this.moveCol = moveCol;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 43 * hash + this.markerRow;
+        hash = 43 * hash + this.markerCol;
+        hash = 43 * hash + this.moveRow;
+        hash = 43 * hash + this.moveCol;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Location other = (Location) obj;
+        if (this.markerRow != other.markerRow) {
+            return false;
+        }
+        if (this.markerCol != other.markerCol) {
+            return false;
+        }
+        if (this.moveRow != other.moveRow) {
+            return false;
+        }
+        if (this.moveCol != other.moveCol) {
+            return false;
+        }
+        return true;
+    }
+
+
     
 }

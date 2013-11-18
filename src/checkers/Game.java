@@ -1,12 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package checkers;
 
 import java.util.Objects;
 
-
+/**
+ *
+ * @author Mark Earl, Ryan Plumb
+ */
 
 public class Game {
     public final static String PLAYER_A_DEFAULT_MARKER = "x";

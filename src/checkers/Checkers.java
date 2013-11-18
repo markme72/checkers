@@ -1,25 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package checkers;
-
-
 
 import java.util.Scanner;
 
-
 /**
  *
- * @author Mark Earl, Ryan Plumb, Mike Coleman
+ * @author Mark Earl, Ryan Plumb
  */
-
 
 public class Checkers {
      
     private static final Scanner inFile = new Scanner(System.in);
-    private static HelpMenuView helpMenuView = new HelpMenuView();
-    private static GamePreferencesMenuView GamePreferencesMenu;
     
     private static String[] nameList;
     
@@ -45,15 +35,6 @@ public class Checkers {
         
     public static Scanner getInputFile() {
         return Checkers.inFile;
-    }
-    
-    public static HelpMenuView getHelpMenuView() {
-        return Checkers.helpMenuView;
-    }
-
-
-    public static GamePreferencesMenuView getGamePreferencesMenu() {
-        return GamePreferencesMenu;
     }
 
     public static String[] getNameList() {

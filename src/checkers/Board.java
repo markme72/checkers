@@ -1,16 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package checkers;
 
 import java.awt.Point;
-
-
+import java.util.Arrays;
 
 /**
  *
- * @author Mark Earl, Ryan Plumb, Mike Coleman
+ * @author Mark Earl, Ryan Plumb
  */
 public class Board {
     private final int rowCount = 8;
@@ -352,4 +347,35 @@ public class Board {
             }
         }
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + this.rowCount;
+        hash = 83 * hash + this.columnCount;
+        hash = 83 * hash + Arrays.deepHashCode(this.boardLocations);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Board other = (Board) obj;
+        if (this.rowCount != other.rowCount) {
+            return false;
+        }
+        if (this.columnCount != other.columnCount) {
+            return false;
+        }
+        if (!Arrays.deepEquals(this.boardLocations, other.boardLocations)) {
+            return false;
+        }
+        return true;
+    }
+
 }

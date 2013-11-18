@@ -1,16 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package checkers;
 
 /**
  *
- * @author Mark Earl, Ryan Plumb, Mike Coleman
+ * @author Mark Earl, Ryan Plumb
  */
 public class BoardView {
     
-    Board board;
+    private Board board;
     
     public void displayBoard(Board board) {
         this.board = board;

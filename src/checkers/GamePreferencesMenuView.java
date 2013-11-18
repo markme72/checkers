@@ -1,11 +1,12 @@
 package checkers;
 
 
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
  *
- * @author Mark Earl, Ryan Plumb, Mike Coleman
+ * @author Mark Earl, Ryan Plumb
  */
 
 
@@ -67,7 +68,6 @@ public class GamePreferencesMenuView  {
         return command;
     }
     
-    
     public String getInput() { 
        this.game = game;
        String command = "";
@@ -90,6 +90,35 @@ public class GamePreferencesMenuView  {
 
         return "PLAYING";
     }
-    
+
+    public GamePreferencesMenuControl getGamePreferenceControl() {
+        return gamePreferenceControl;
+    }
+
+    public void setGamePreferenceControl(GamePreferencesMenuControl gamePreferenceControl) {
+        this.gamePreferenceControl = gamePreferenceControl;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.gamePreferenceControl);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final GamePreferencesMenuView other = (GamePreferencesMenuView) obj;
+        if (!Objects.equals(this.gamePreferenceControl, other.gamePreferenceControl)) {
+            return false;
+        }
+        return true;
+    }
     
 }

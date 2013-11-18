@@ -1,24 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package checkers;
 
-
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.Random;
-
+import java.util.Objects;
 
 /**
  *
- * @author Mark Earl, Ryan Plumb, Mike Coleman
+ * @author Mark Earl, Ryan Plumb
  */
 public class GameMenuControl {
     
     private Game game;
     private Board board;
-    private Location getLocationView = new Location();
+    private Location getLocation = new Location();
     private BoardView boardView = new BoardView();
 
     
@@ -138,12 +131,12 @@ public class GameMenuControl {
         
         this.game.setStatus(Game.PLAYING);
 
-        Point markerLocation = getLocationView.getMarkerLocation(this.game);
+        Point markerLocation = getLocation.getMarkerLocation(this.game);
         if (markerLocation == null) { // no location was entered?
             return -1;
         }
         
-        Point moveLocation = getLocationView.getMoveLocation(this.game);
+        Point moveLocation = getLocation.getMoveLocation(this.game);
         if (moveLocation == null) { // no location was entered?
             return -1;
         }
@@ -208,6 +201,40 @@ public class GameMenuControl {
                 rowlocations[j] = null;
             }
         }
+    }
+
+    public Location getGetLocation() {
+        return getLocation;
+    }
+
+    public void setGetLocation(Location getLocation) {
+        this.getLocation = getLocation;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 83 * hash + Objects.hashCode(this.getLocation);
+        hash = 83 * hash + Objects.hashCode(this.boardView);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final GameMenuControl other = (GameMenuControl) obj;
+        if (!Objects.equals(this.getLocation, other.getLocation)) {
+            return false;
+        }
+        if (!Objects.equals(this.boardView, other.boardView)) {
+            return false;
+        }
+        return true;
     }
         
 }

@@ -2,7 +2,7 @@ package checkers;
 
 /**
  *
- * @author Mark Earl, Ryan Plumb, Mike Coleman
+ * @author Mark Earl, Ryan Plumb
  */
 public class Player {
 

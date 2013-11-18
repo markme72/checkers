@@ -1,14 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package checkers;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
  *
- * @author Mark Earl, Ryan Plumb, Mike Coleman
+ * @author Mark Earl, Ryan Plumb
  */
 public class GameMenuView {
     
@@ -127,7 +124,34 @@ public class GameMenuView {
         return command;
     }
 
+    public GameMenuControl getGameMenuControl() {
+        return gameMenuControl;
+    }
 
+    public void setGameMenuControl(GameMenuControl gameMenuControl) {
+        this.gameMenuControl = gameMenuControl;
+    }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.gameMenuControl);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final GameMenuView other = (GameMenuView) obj;
+        if (!Objects.equals(this.gameMenuControl, other.gameMenuControl)) {
+            return false;
+        }
+        return true;
+    }
    
 }
