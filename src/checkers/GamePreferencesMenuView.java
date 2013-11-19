@@ -1,8 +1,6 @@
 package checkers;
 
-
 import java.util.Objects;
-import java.util.Scanner;
 
 /**
  *
@@ -33,7 +31,6 @@ public class GamePreferencesMenuView extends Menu  {
     }
     
     public String getInput() { 
-       this.game = game;
        String command = "";
         
         do {

@@ -1,9 +1,5 @@
 package checkers;
 
-import java.util.Scanner;
-
-
-
 /**
  *
  * @author Mark Earl, Ryan Plumb
