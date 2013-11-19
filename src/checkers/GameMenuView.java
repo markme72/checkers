@@ -7,7 +7,7 @@ import java.util.Scanner;
  *
  * @author Mark Earl, Ryan Plumb
  */
-public class GameMenuView {
+public class GameMenuView extends Menu {
     
     private Game game;
     private GameMenuControl gameMenuControl = null; 
@@ -25,6 +25,7 @@ public class GameMenuView {
     };
 
     public GameMenuView(Game game) {
+        super(GameMenuView.menuItems);
         this.game = game;
         this.gameMenuControl = new GameMenuControl(game);      
     }
@@ -80,48 +81,6 @@ public class GameMenuView {
         } while (!gameStatus.equals("QUIT") && !gameStatus.equals(Game.WINNER));
         
         return Game.PLAYING;
-    }
-    
-
-
-    public final void display() {
-        System.out.println("\n\t===============================================================");
-        System.out.println("\tEnter the number associated with one of the following commands:");
-
-        for (int i = 0; i < GameMenuView.menuItems.length; i++) {
-            System.out.println("\t   " + menuItems[i][0] + "\t" + menuItems[i][1]);
-        }
-        System.out.println("\t===============================================================\n");
-    }
-
-    private boolean validCommand(String command) {
-        String[][] items = GameMenuView.menuItems;
-
-        for (String[] item : GameMenuView.menuItems) {
-            if (item[0].equals(command)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    protected final String getCommand() {
-
-        Scanner inFile = Checkers.getInputFile();
-        String command;
-        boolean valid = false;
-        do {
-            command = inFile.nextLine();
-            command = command.trim().toUpperCase();
-            valid = validCommand(command);
-            if (!validCommand(command)) {
-                new CheckersError().displayError("Invalid command. Please enter a valid command.");
-                continue;
-            }
-                
-        } while (!valid);
-        
-        return command;
     }
 
     public GameMenuControl getGameMenuControl() {

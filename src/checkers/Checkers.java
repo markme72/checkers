@@ -10,6 +10,9 @@ import java.util.Scanner;
 public class Checkers {
      
     private static final Scanner inFile = new Scanner(System.in);
+    private static final HelpMenuView helpMenu = new HelpMenuView();
+    
+    private static final GamePreferencesMenuView GamePreferencesMenu = new GamePreferencesMenuView();    
     
     private static String[] nameList;
     
@@ -51,7 +54,7 @@ public class Checkers {
         checkers.display();
         MainMenuView mainMenu = new MainMenuView();
 
-        mainMenu.getInput();
+        mainMenu.getInput(null);
         
         Checkers.inFile.close();
         
