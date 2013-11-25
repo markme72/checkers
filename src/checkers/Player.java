@@ -14,7 +14,7 @@ public class Player {
     private long losses = 0;
     private long ties = 0;
     private String marker;
-    private static int numOfMarkers = 12;
+    private int numOfMarkers = 12;
 
     public Player() {
     }
