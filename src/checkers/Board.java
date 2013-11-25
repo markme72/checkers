@@ -101,7 +101,7 @@ public class Board {
                 if (corners[i] == null)
                     valid = true;
                 else {
-                    if(canJump(x - 2, y - 2, i, corners[i], game) || canJump(x - 2, y + 2, i, corners[i], game))
+                    if(canJump(x - 2, y - 2, corners[i], game) || canJump(x - 2, y + 2, corners[i], game))
                         valid = true;
                 }
             }
@@ -126,7 +126,7 @@ public class Board {
                 if (corners[i] == null)
                     valid = true;
                 else {
-                    if (canJump(x + 2, y + 2, i, corners[i], game) || canJump(x + 2, y - 2, i, corners[i], game))
+                    if (canJump(x + 2, y + 2, corners[i], game) || canJump(x + 2, y - 2, corners[i], game))
                         valid = true;
                 }
             }
@@ -165,16 +165,16 @@ public class Board {
                 else {
                     switch (i) {
                         case 0:
-                            jump0 = canJump(x - 2, y - 2, i, corners[i], game);
+                            jump0 = canJump(x - 2, y - 2, corners[i], game);
                             break;
                         case 1: 
-                            jump1 = canJump(x - 2, y + 2, i, corners[i], game);
+                            jump1 = canJump(x - 2, y + 2, corners[i], game);
                             break;
                         case 2:    
-                            jump2 = canJump(x + 2, y - 2, i, corners[i], game);
+                            jump2 = canJump(x + 2, y - 2, corners[i], game);
                             break;
                         case 3:    
-                            jump3 = canJump(x + 2, y + 2, i, corners[i], game);
+                            jump3 = canJump(x + 2, y + 2, corners[i], game);
                             break;
                     }
                 }
@@ -193,14 +193,14 @@ public class Board {
         
         Point[] corners = new Point[4];
         Point[] jumpCorners = new Point[4];
-        corners[0] = new Point (x-1,y-1); // Top left corner
-        corners[1] = new Point (x-1,y+1); // Top right corner
-        corners[2] = new Point (x+1,y-1); // Bottom left corner
-        corners[3] = new Point (x+1,y+1); // Bottom right corner
-        jumpCorners[0] = new Point (x-2,y-2); 
-        jumpCorners[1] = new Point (x-2,y+2);
-        jumpCorners[2] = new Point (x+2,y-2);
-        jumpCorners[3] = new Point (x+2,y+2);
+        corners[0] = new Point(x-1,y-1); // Top left corner
+        corners[1] = new Point(x-1,y+1); // Top right corner
+        corners[2] = new Point(x+1,y-1); // Bottom left corner
+        corners[3] = new Point(x+1,y+1); // Bottom right corner
+        jumpCorners[0] = new Point(x-2,y-2); 
+        jumpCorners[1] = new Point(x-2,y+2);
+        jumpCorners[2] = new Point(x+2,y-2);
+        jumpCorners[3] = new Point(x+2,y+2);
         
         boolean valid = false;
         
@@ -212,7 +212,7 @@ public class Board {
                 else if (jumpCorners[i].equals(markerLocation)){
                     // Checks to see if corners are out of the bounds of the array
                     if (corners[i].x >= 0 && corners[i].y >= 0 && corners[i].x <= 7 && corners[i].y <= 7){
-                        boolean validJump = canJump(x, y, i, this.boardLocations[corners[i].x][corners[i].y], game);
+                        boolean validJump = canJump(x, y, this.boardLocations[corners[i].x][corners[i].y], game);
                         if (validJump){
                             valid = true;
                             unoccupyLocation(game, corners[i].x, corners[i].y,validJump);
@@ -229,7 +229,7 @@ public class Board {
                 else if (jumpCorners[i].equals(markerLocation)){
                     // Checks to see if corners are out of the bounds of the array                    
                     if (corners[i].x >= 0 && corners[i].y >= 0 && corners[i].x <= 7 && corners[i].y <= 7){
-                        boolean validJump = canJump(x, y, i, this.boardLocations[corners[i].x][corners[i].y], game);
+                        boolean validJump = canJump(x, y, this.boardLocations[corners[i].x][corners[i].y], game);
                         if (validJump){
                             valid = true;                            
                             unoccupyLocation(game, corners[i].x, corners[i].y, validJump);
@@ -246,7 +246,7 @@ public class Board {
                 else if (jumpCorners[i].equals(markerLocation)){
                     // Checks to see if corners are out of the bounds of the array                   
                     if (corners[i].x >= 0 && corners[i].y >= 0 && corners[i].x <= 7 && corners[i].y <= 7){
-                        boolean validJump = canJump(x, y, i, this.boardLocations[corners[i].x][corners[i].y], game);
+                        boolean validJump = canJump(x, y, this.boardLocations[corners[i].x][corners[i].y], game);
                         if (validJump){
                             valid = true;
                             unoccupyLocation(game, corners[i].x, corners[i].y, validJump);
@@ -259,11 +259,11 @@ public class Board {
         return valid;
     }
     
-    public Boolean canJump(int row, int col, int jumpCorner, Player corner, Game game) {
+    public Boolean canJump(int row, int col, Player corner, Game game) {
         boolean valid = false;
 
         // Check to see if the piece in its corner is of the same player
-        if (game.getOtherPlayer() != corner) {
+        if (game.getOtherPlayer() != corner && game.getKingedOtherPlayer() != corner) {
             return valid;
         }
 
@@ -277,10 +277,44 @@ public class Board {
         return valid;
     }
     
+        public boolean canJumpAgain(Game game, int moveRow, int moveCol) {
+        boolean valid = false;
+        
+        Player[] corners = new Player[4];
+        Point[] jumpCorners = {
+            new Point(moveRow-2,moveCol-2),
+            new Point(moveRow-2,moveCol+2),
+            new Point(moveRow+2,moveCol-2),
+            new Point(moveRow+2,moveCol+2)       
+        };
+        if (moveRow-1 >= 0 && moveCol-1 >= 0)
+            corners[0] = this.boardLocations[moveRow-1][moveCol-1];
+        else
+            corners[0] = game.getInvalidSpaces();
+        if (moveRow-1 >= 0 && moveCol+1 < 8)
+            corners[1] = this.boardLocations[moveRow-1][moveCol+1];
+        else
+            corners[1] = game.getInvalidSpaces();
+        if (moveRow+1 < 8 && moveCol-1 >= 0)
+            corners[2] = this.boardLocations[moveRow+1][moveCol-1];
+        else
+            corners[2] = game.getInvalidSpaces();
+        if (moveRow+1 < 8 && moveCol+1 < 8)
+            corners[3] = this.boardLocations[moveRow+1][moveCol+1];
+        else
+            corners[3] = game.getInvalidSpaces();
+        
+        for (int i = 0; i < 4; i++) {
+            if (!valid)
+                valid = canJump(jumpCorners[i].x, jumpCorners[i].y, corners[i], game);
+        }
+        return valid;
+    }
+    
     public void kingMe(Game game) {
-        for (int i = 0; i < boardLocations[0].length; i += 2) {
-            if (boardLocations[0][i] == game.getPlayerB()) {
-                boardLocations[0][i] = game.getKingedPlayerB();
+        for (int i = 0; i < this.boardLocations[0].length; i += 2) {
+            if (this.boardLocations[0][i] == game.getPlayerB()) {
+                this.boardLocations[0][i] = game.getKingedPlayerB();
             }
         }
         

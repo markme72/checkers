@@ -121,6 +121,7 @@ public class GameMenuControl {
      */
     private int regularPlayerTurn(Player player) {
         boolean noJump = false;
+        boolean jump = false;
         if (!this.game.getStatus().equals(Game.NEW_GAME)  &&
             !this.game.getStatus().equals(Game.PLAYING)) {
             new CheckersError().displayError(
@@ -136,13 +137,36 @@ public class GameMenuControl {
             return -1;
         }
         
-        Point moveLocation = getLocation.getMoveLocation(this.game);
+        Point moveLocation = getLocation.getMoveLocation(this.game, false);
         if (moveLocation == null) { // no location was entered?
             return -1;
         }
         
+        Point[] jumpCorners = {
+          new Point(markerLocation.x-2,markerLocation.y-2),  
+          new Point(markerLocation.x-2,markerLocation.y+2),  
+          new Point(markerLocation.x+2,markerLocation.y-2),  
+          new Point(markerLocation.x+2,markerLocation.y+2)
+        };
+        
         this.game.getBoard().occupyLocation(player, markerLocation.x, markerLocation.y, moveLocation.x, moveLocation.y);
         this.game.getBoard().unoccupyLocation(game, markerLocation.x, markerLocation.y, noJump);        
+        
+        if (jumpCorners[0].equals(moveLocation) || jumpCorners[1].equals(moveLocation) || jumpCorners[2].equals(moveLocation) 
+                || jumpCorners[3].equals(moveLocation))
+            jump = board.canJumpAgain(game, moveLocation.x, moveLocation.y);
+            while (jump) {
+                boardView.displayBoard(board);
+                int moveRow = getLocation.getMoveRow()-1;
+                int moveCol = getLocation.getMoveCol()-1;
+                Point newMoveLocation = getLocation.getMoveLocation(this.game, jump);
+                    if (newMoveLocation == null) { // no location was entered?
+                        return -1;
+                    }
+                this.game.getBoard().occupyLocation(player, moveRow, moveCol, newMoveLocation.x, newMoveLocation.y);
+                this.game.getBoard().unoccupyLocation(game, moveRow, moveCol, noJump);
+                jump = board.canJumpAgain(game, newMoveLocation.x, newMoveLocation.y);
+            }
         return 0;
     }
 

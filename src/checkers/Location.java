@@ -85,16 +85,24 @@ public class Location {
         return location;
     }
     
-    public Point getMoveLocation(Game game) {
+    public Point getMoveLocation(Game game, boolean jump) {
         Scanner input = Checkers.getInputFile();
         String coordinates[];
         Point location = null;
+        int oldMoveRow = this.moveRow;
+        int oldMoveCol = this.moveCol;
         
         boolean valid = false;
         
         while(!valid) {
-            System.out.println(game.getCurrentPlayer().getName() + ", where would you like to move?"
-                    + " (e.g. 1 8 or 1,8)");
+            if (!jump){
+                System.out.println(game.getCurrentPlayer().getName() + ", where would you like to move?"
+                        + " (e.g. 1 8 or 1,8)");
+            }
+            else {
+                System.out.println(game.getCurrentPlayer().getName() + ", jump again!"
+                        + " (e.g. 1 8 or 1,8)");                
+            }
             String rowColumn = input.nextLine();
             rowColumn = rowColumn.trim();
             rowColumn = rowColumn.replace(',', ' ');
@@ -143,19 +151,26 @@ public class Location {
                     "The current location is taken. Select another location");
                 continue;
             }
-            
-            if (!board.checkMoveLocation(row - 1, column - 1, this.markerRow - 1, this.markerCol - 1, game)) {
-                new CheckersError().displayError(
-                        "This marker cannot move here. Select another location.");
-                continue;
+            if (jump){
+                if (!board.checkMoveLocation(row - 1, column - 1, oldMoveRow - 1, oldMoveCol - 1, game)) {
+                    new CheckersError().displayError(
+                            "This marker cannot move here. Select another location.");
+                    continue;
+                }
             }
-                
+            else
+                if(!board.checkMoveLocation(row - 1, column - 1, this.markerRow - 1, this.markerCol - 1, game)) {
+                    new CheckersError().displayError(
+                            "This marker cannot move here. Select another location.");
+                    continue;
+            }
             valid = true;
             
         }
         
         return location;
     }
+    
 
     public int getMarkerRow() {
         return markerRow;
