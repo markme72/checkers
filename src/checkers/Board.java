@@ -277,7 +277,7 @@ public class Board {
         return valid;
     }
     
-        public boolean canJumpAgain(Game game, int moveRow, int moveCol) {
+    public boolean canJumpAgain(Game game, int moveRow, int moveCol) {
         boolean valid = false;
         
         Player[] corners = new Player[4];
@@ -304,11 +304,30 @@ public class Board {
         else
             corners[3] = game.getInvalidSpaces();
         
-        for (int i = 0; i < 4; i++) {
-            if (!valid)
-                valid = canJump(jumpCorners[i].x, jumpCorners[i].y, corners[i], game);
+        // Checks for "o" jumps
+        if (game.getCurrentPlayer().getMarker().equals("o")) {
+            for (int i = 0; i < 2; i++) {
+                if (!valid)
+                    valid = canJump(jumpCorners[i].x, jumpCorners[i].y, corners[i], game);
+            }
         }
-        return valid;
+        
+        // Checks for "x" jumps
+        else if (game.getCurrentPlayer().getMarker().equals("x")) {
+            for (int i = 2; i < 4; i++) {
+                if (!valid)
+                    valid = canJump(jumpCorners[i].x, jumpCorners[i].y, corners[i], game);
+            }
+        }
+        
+        // Checks for kinged players
+        else {
+            for (int i = 0; i < 4; i++) {
+                if (!valid)
+                    valid = canJump(jumpCorners[i].x, jumpCorners[i].y, corners[i], game);
+            }
+        }
+        return valid;        
     }
     
     public void kingMe(Game game) {
