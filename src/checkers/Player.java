@@ -4,7 +4,7 @@ package checkers;
  *
  * @author Mark Earl, Ryan Plumb
  */
-public class Player {
+public abstract class Player {
 
     public static final String REGULAR_PLAYER = "REGULAR";
     
@@ -14,6 +14,7 @@ public class Player {
     private long losses = 0;
     private long ties = 0;
     private String marker;
+    private String kingedMarker;
     private int numOfMarkers = 12;
 
     public Player() {
@@ -64,8 +65,12 @@ public class Player {
         this.marker = marker;
     }
     
+    public String getKingedMarker() {
+        return kingedMarker;
+    }   
+    
     public void setKingedMarker(String kingedMarker) {
-        this.marker = kingedMarker;
+        this.kingedMarker = kingedMarker;
     }
 
     public long getTies() {

@@ -43,11 +43,11 @@ public class Game {
 
     public Game() {
    
-       this.playerA = new Player();
-       this.playerB = new Player();
-       this.kingedPlayerA = new Player();
-       this.kingedPlayerB = new Player();
-       this.invalidSpaces = new Player();
+       this.playerA = new Player() {};
+       this.playerB = new Player() {};
+       this.kingedPlayerA = new Player() {};
+       this.kingedPlayerB = new Player() {};
+       this.invalidSpaces = new Player() {};
        
        this.playerA.setMarker(Game.PLAYER_A_DEFAULT_MARKER);
        this.playerA.setKingedMarker(Game.PLAYER_A_DEFAULT_KINGED_MARKER);       

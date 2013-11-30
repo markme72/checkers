@@ -1,5 +1,8 @@
 package checkers;
 
+import checkers.menus.GamePreferencesMenuView;
+import checkers.menus.HelpMenuView;
+import checkers.menus.MainMenuView;
 import java.util.Scanner;
 
 /**
