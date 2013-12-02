@@ -1,9 +1,11 @@
-package checkers.menus;
+package checkers.controls;
 
 import checkers.CheckersError;
 import checkers.Game;
 import checkers.Player;
 import checkers.menus.GameMenuView;
+import checkers.menus.GameMenuView;
+import checkers.menus.HelpMenuView;
 import checkers.menus.HelpMenuView;
 import java.util.Scanner;
 

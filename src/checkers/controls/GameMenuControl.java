@@ -1,4 +1,4 @@
-package checkers.menus;
+package checkers.controls;
 
 import checkers.Board;
 import checkers.BoardView;
@@ -7,6 +7,8 @@ import checkers.Game;
 import checkers.Location;
 import checkers.Player;
 import checkers.menus.GamePreferencesMenuView;
+import checkers.menus.GamePreferencesMenuView;
+import checkers.menus.HelpMenuView;
 import checkers.menus.HelpMenuView;
 import java.awt.Point;
 import java.util.Objects;

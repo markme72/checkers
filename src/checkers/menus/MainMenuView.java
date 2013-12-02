@@ -1,5 +1,6 @@
 package checkers.menus;
 
+import checkers.controls.MainMenuControl;
 import checkers.Game;
 
 /**

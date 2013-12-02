@@ -1,4 +1,4 @@
-package checkers.menus;
+package checkers.controls;
 
 /**
  *

@@ -1,4 +1,4 @@
-package checkers.menus;
+package checkers.controls;
 
 import checkers.Game;
 import java.awt.Dimension;
