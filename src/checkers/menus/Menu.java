@@ -2,13 +2,15 @@ package checkers.menus;
 
 import checkers.Checkers;
 import checkers.CheckersError;
+import checkers.enums.ErrorType;
+import checkers.interfaces.DisplayInfo;
 import java.util.Scanner;
 
 /**
  *
  * @author Mark Earl
  */
-public abstract class Menu {
+public abstract class Menu implements DisplayInfo {
 
     private String[][] menuItems = null;
     
@@ -28,6 +30,7 @@ public abstract class Menu {
         this.menuItems = menuItems;
     }
     
+    @Override
     public final void display() {
         System.out.println("\n\t===============================================================");
         System.out.println("\tEnter the number associated with one of the following commands:");
@@ -59,7 +62,7 @@ public abstract class Menu {
             command = command.trim().toUpperCase();
             valid = validCommand(command);
             if (!validCommand(command)) {
-                new CheckersError().displayError("Invalid command. Please enter a valid command.");
+                new CheckersError(ErrorType.ERROR101).display();
                 continue;
             }
                 

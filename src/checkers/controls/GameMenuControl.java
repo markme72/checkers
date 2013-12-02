@@ -6,9 +6,8 @@ import checkers.CheckersError;
 import checkers.Game;
 import checkers.Location;
 import checkers.Player;
+import checkers.enums.ErrorType;
 import checkers.menus.GamePreferencesMenuView;
-import checkers.menus.GamePreferencesMenuView;
-import checkers.menus.HelpMenuView;
 import checkers.menus.HelpMenuView;
 import java.awt.Point;
 import java.util.Objects;
@@ -44,7 +43,7 @@ public class GameMenuControl {
         
         if (!this.game.getStatus().equals(Game.NEW_GAME)  && 
             !this.game.getStatus().equals(Game.PLAYING)) {
-            new CheckersError().displayError("You must start a new game first.");
+            new CheckersError(ErrorType.ERROR102).display();
             return;
         } else {
     }
@@ -134,9 +133,7 @@ public class GameMenuControl {
         boolean jump = false;
         if (!this.game.getStatus().equals(Game.NEW_GAME)  &&
             !this.game.getStatus().equals(Game.PLAYING)) {
-            new CheckersError().displayError(
-                    "There is no active game. You must start a new game before "
-                    + "you can take a turn");
+            new CheckersError(ErrorType.ERROR103).display();
             return -1;
         } 
         

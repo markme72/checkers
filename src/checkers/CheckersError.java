@@ -5,19 +5,25 @@
 
 package checkers;
 
+import checkers.enums.ErrorType;
+import checkers.interfaces.DisplayInfo;
+
 /**
  *
  * @author Mark Earl, Ryan Plumb
  */
-public class CheckersError {
+public class CheckersError implements DisplayInfo {
+    ErrorType error;
 
-    public Object displayError(Object object) {
-        String message = (String) object;
-                              
+    public CheckersError(ErrorType error) {
+        this.error = error;
+    }
+
+    @Override
+    public void display() {
+        String message = (String) this.error.getMessage();                            
         System.out.println("\tZOMG!!!!!!!!!!!!!!!!!!!!!!! YOU DID SOMETHING WRONG !!!!!!!!!!!!!!!!!!!!!!!GMOZ");
         System.out.println("\t ERROR: " + message);
         System.out.println("\tZOMG!!!!!!!!!!!!!!!!!!!!!!!    DON'T DO IT AGAIN    !!!!!!!!!!!!!!!!!!!!!!!GMOZ");
-        return null;
     }
-    
 }

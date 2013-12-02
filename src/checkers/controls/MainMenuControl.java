@@ -17,12 +17,6 @@ public class MainMenuControl {
     
     
     public void startGame(long noPlayers) {
-                
-        if (noPlayers != 1  &&  noPlayers != 2) {
-            new CheckersError().displayError("startGame - invalid number of players specified.");
-            return;
-        }
-        
         Game game;
         game = this.createGame("TWO_PLAYER");
        
@@ -38,11 +32,6 @@ public class MainMenuControl {
         Player kingedPlayerA = null;
         Player playerB = null;
         Player kingedPlayerB = null;
-        
-        if (gameType == null) {
-            new CheckersError().displayError("MainCommands - create: gameType is null");
-            return null;
-        }
         
 
         game = new Game(Game.TWO_PLAYER);

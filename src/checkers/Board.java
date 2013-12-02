@@ -1,5 +1,6 @@
 package checkers;
 
+import checkers.enums.ErrorType;
 import java.awt.Point;
 import java.util.Arrays;
 
@@ -357,14 +358,12 @@ public class Board {
             this.boardLocations[row][column] = null;
         else {
             if (location == null) {
-                new CheckersError().displayError("There is no marker at this location. "
-                    + "Try a different location.");
+                new CheckersError(ErrorType.ERROR110).display();
             }
 
             else if (location.getMarker().equals(game.getOtherPlayer().getMarker())
                     || location.getMarker().equals(game.getKingedOtherPlayer().getMarker())) {
-                new CheckersError().displayError("This is not your marker. "
-                    + "Try a different location.");
+                new CheckersError(ErrorType.ERROR111).display();
             }
             else
                 this.boardLocations[row][column] = null;

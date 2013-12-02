@@ -1,5 +1,6 @@
 package checkers;
 
+import checkers.enums.ErrorType;
 import java.awt.Point;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -35,24 +36,19 @@ public class Location {
                     return null;
                 } 
                 else {
-                    new CheckersError().displayError(
-                        "You must enter a valid row and column, "
-                        + "or a \"Q\" to quit.");
+                    new CheckersError(ErrorType.ERROR104).display();
                 continue;
                 }
             }
             else if (coordinates[0].length() >= 2 || coordinates[1].length() >= 2 || coordinates.length > 2){
-                new CheckersError().displayError(
-                        "You must enter a valid row and column, "
-                        + "or a \"Q\" to quit.");
+                new CheckersError(ErrorType.ERROR104).display();
                 continue;
                 }
             
             // Checks if row is a number 1-8
             Pattern pattern = Pattern.compile("[^1-8]");
                 if (pattern.matcher(coordinates[0]).matches() && pattern.matcher(coordinates[1]).matches()){
-                  new CheckersError().displayError(
-                        "You must enter a number between 1-8 for both the row and column.");
+                  new CheckersError(ErrorType.ERROR105).display();
                   continue;  
                 }
             Board board = game.getBoard();
@@ -67,14 +63,12 @@ public class Location {
             location = new Point(row-1, column-1);
             
             if (board.locationUnoccupied(location, game.getOtherPlayer(), game.getInvalidSpaces(), game.getKingedOtherPlayer())) {
-                new CheckersError().displayError(
-                    "You do not have a marker here. Select another location");
+                new CheckersError(ErrorType.ERROR106).display();
                 continue;
             }
             
             if (!board.canMarkerMove(row - 1, column - 1, game)) {
-                new CheckersError().displayError(
-                        "This marker has no moves. Select another marker.");
+                new CheckersError(ErrorType.ERROR107).display();
                 continue;
             }
                 
@@ -113,17 +107,13 @@ public class Location {
                     return null;
                 }
                 else {
-                    new CheckersError().displayError(
-                        "You must enter the row and the column, "
-                        + "or a \"Q\" to quit.");
+                    new CheckersError(ErrorType.ERROR104).display();
                 continue;
                 }
             } 
             
             else if (coordinates[0].length() >= 2 || coordinates[1].length() >= 2 || coordinates.length > 2){
-                new CheckersError().displayError(
-                        "You must enter a valid row and column, "
-                        + "or a \"Q\" to quit.");
+                new CheckersError(ErrorType.ERROR104).display();
                 continue;
             }
 
@@ -131,8 +121,7 @@ public class Location {
             // Checks if row is a number 1-8
             Pattern pattern = Pattern.compile("[^1-8]");
                 if (pattern.matcher(coordinates[0]).matches() && pattern.matcher(coordinates[1]).matches()){
-                    new CheckersError().displayError(
-                        "You must enter a number between 1-8 for the row.");
+                    new CheckersError(ErrorType.ERROR105).display();
                     continue;  
                 }
                 
@@ -147,21 +136,18 @@ public class Location {
             location = new Point(row-1, column-1);
             
             if (board.locationOccupied(location)) {
-                new CheckersError().displayError(
-                    "The current location is taken. Select another location");
+                new CheckersError(ErrorType.ERROR108).display();
                 continue;
             }
             if (jump){
                 if (!board.checkMoveLocation(row - 1, column - 1, oldMoveRow - 1, oldMoveCol - 1, game)) {
-                    new CheckersError().displayError(
-                            "This marker cannot move here. Select another location.");
+                    new CheckersError(ErrorType.ERROR109).display();
                     continue;
                 }
             }
             else
                 if(!board.checkMoveLocation(row - 1, column - 1, this.markerRow - 1, this.markerCol - 1, game)) {
-                    new CheckersError().displayError(
-                            "This marker cannot move here. Select another location.");
+                    new CheckersError(ErrorType.ERROR109).display();
                     continue;
             }
             valid = true;
