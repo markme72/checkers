@@ -1,8 +1,7 @@
 package checkers.controls;
 
-import checkers.CheckersError;
-import checkers.Game;
-import checkers.Player;
+import checkers.models.Game;
+import checkers.models.Player;
 import checkers.menus.GameMenuView;
 import checkers.menus.GameMenuView;
 import checkers.menus.HelpMenuView;

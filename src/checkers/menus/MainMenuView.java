@@ -1,7 +1,7 @@
 package checkers.menus;
 
 import checkers.controls.MainMenuControl;
-import checkers.Game;
+import checkers.models.Game;
 
 /**
  *

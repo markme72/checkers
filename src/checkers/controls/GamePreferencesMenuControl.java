@@ -1,6 +1,6 @@
 package checkers.controls;
 
-import checkers.Game;
+import checkers.models.Game;
 import java.awt.Dimension;
 
 /**

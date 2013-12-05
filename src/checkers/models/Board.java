@@ -1,5 +1,6 @@
-package checkers;
+package checkers.models;
 
+import checkers.controls.CheckersError;
 import checkers.enums.ErrorType;
 import java.awt.Point;
 import java.util.Arrays;

@@ -1,4 +1,7 @@
-package checkers;
+package checkers.menus;
+
+import checkers.models.Board;
+import checkers.models.Player;
 
 /**
  *

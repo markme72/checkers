@@ -1,7 +1,7 @@
 package checkers.menus;
 
-import checkers.Checkers;
-import checkers.CheckersError;
+import checkers.controls.Checkers;
+import checkers.controls.CheckersError;
 import checkers.enums.ErrorType;
 import checkers.interfaces.DisplayInfo;
 import java.util.Scanner;

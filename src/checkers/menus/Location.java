@@ -1,5 +1,9 @@
-package checkers;
+package checkers.menus;
 
+import checkers.models.Board;
+import checkers.models.Game;
+import checkers.controls.Checkers;
+import checkers.controls.CheckersError;
 import checkers.enums.ErrorType;
 import java.awt.Point;
 import java.util.Scanner;

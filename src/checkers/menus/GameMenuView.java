@@ -1,7 +1,7 @@
 package checkers.menus;
 
 import checkers.controls.GameMenuControl;
-import checkers.Game;
+import checkers.models.Game;
 import checkers.menus.Menu;
 import java.util.Objects;
 

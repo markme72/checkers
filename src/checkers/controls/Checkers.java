@@ -1,4 +1,4 @@
-package checkers;
+package checkers.controls;
 
 import checkers.menus.GamePreferencesMenuView;
 import checkers.menus.HelpMenuView;

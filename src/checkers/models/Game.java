@@ -1,4 +1,4 @@
-package checkers;
+package checkers.models;
 
 import java.util.Objects;
 

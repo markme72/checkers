@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package checkers;
+package checkers.controls;
 
 import checkers.enums.ErrorType;
 import checkers.interfaces.DisplayInfo;

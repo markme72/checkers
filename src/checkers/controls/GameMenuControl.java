@@ -1,11 +1,10 @@
 package checkers.controls;
 
-import checkers.Board;
-import checkers.BoardView;
-import checkers.CheckersError;
-import checkers.Game;
-import checkers.Location;
-import checkers.Player;
+import checkers.models.Board;
+import checkers.menus.BoardView;
+import checkers.models.Game;
+import checkers.menus.Location;
+import checkers.models.Player;
 import checkers.enums.ErrorType;
 import checkers.menus.GamePreferencesMenuView;
 import checkers.menus.HelpMenuView;
