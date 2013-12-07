@@ -20,7 +20,8 @@ public enum ErrorType {
     ERROR110 ("There is no marker at this location. "
                     + "Try a different location."),
     ERROR111 ("This is not your marker. "
-                    + "Try a different location.");
+                    + "Try a different location."),
+    ERROR201 ("Game quit unexpectedly");
     
     
     String message;

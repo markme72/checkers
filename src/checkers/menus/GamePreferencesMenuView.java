@@ -1,8 +1,8 @@
 package checkers.menus;
 
 import checkers.controls.GamePreferencesMenuControl;
+import checkers.exceptions.MenuException;
 import checkers.models.Game;
-import checkers.menus.Menu;
 import java.util.Objects;
 
 /**
@@ -33,7 +33,7 @@ public class GamePreferencesMenuView extends Menu  {
         this.gamePreferenceControl = new GamePreferencesMenuControl(this.game);
     }
     
-    public String getInput() { 
+    public String getInput() throws MenuException { 
        String command = "";
         
         do {

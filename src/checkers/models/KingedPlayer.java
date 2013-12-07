@@ -9,6 +9,6 @@ package checkers.models;
  *
  * @author Mark Earl
  */
-public class KingedPlayer {
+public class KingedPlayer extends Player {
 
 }

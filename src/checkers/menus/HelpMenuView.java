@@ -1,6 +1,7 @@
 package checkers.menus;
 
 import checkers.controls.HelpMenuControl;
+import checkers.exceptions.MenuException;
 import checkers.models.Game;
 import checkers.menus.Menu;
 
@@ -31,7 +32,7 @@ public class HelpMenuView extends Menu  {
     } 
     
     // display the help menu and get the end users input selection
-    public String getInput() {       
+    public String getInput() throws MenuException {       
         
         String gameStatus = Game.PLAYING;
         do {

@@ -1,6 +1,7 @@
 package checkers.menus;
 
 import checkers.controls.MainMenuControl;
+import checkers.exceptions.MenuException;
 import checkers.models.Game;
 
 /**
@@ -24,24 +25,28 @@ public class MainMenuView extends Menu {
         super(MainMenuView.menuItems);
     }
     
-    public String getInput(Object object) {       
+    public String getInput(Object object) throws MenuException {       
         
         String gameStatus = Game.PLAYING;
         do {
             this.display();
 
             // get commaned entered
-            String command = this.getCommand();
-            switch (command) {
-                case "S":
-                    mainMenuControl.startGame(2);
-                    break;
-                case "H":
-                    mainMenuControl.displayHelpMenu();
-                    break;
-                case "X":
-                    return Game.EXIT;
-            }
+            try {
+                String command = this.getCommand();
+                switch (command) {
+                    case "S":
+                        mainMenuControl.startGame(2);
+                        break;
+                    case "H":
+                        mainMenuControl.displayHelpMenu();
+                        break;
+                    case "X":
+                        return Game.EXIT;
+                }
+            } catch (MenuException cex) {
+                    System.out.println("\n\t" + cex.getMessage());
+                }
         } while (!gameStatus.equals(Game.EXIT));
 
         return Game.EXIT;

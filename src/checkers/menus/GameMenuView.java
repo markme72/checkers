@@ -1,6 +1,9 @@
 package checkers.menus;
 
 import checkers.controls.GameMenuControl;
+import checkers.exceptions.CheckersException;
+import checkers.exceptions.GameException;
+import checkers.exceptions.MenuException;
 import checkers.models.Game;
 import checkers.menus.Menu;
 import java.util.Objects;
@@ -34,7 +37,7 @@ public class GameMenuView extends Menu {
 
     
     
-    public Object getInput(Object object) {
+    public Object getInput(Object object) throws MenuException {
         this.game = (Game) object;
 
         this.game.setStatus(Game.CONTINUE);
@@ -45,41 +48,46 @@ public class GameMenuView extends Menu {
             this.display();
         
             // get commaned entered
-            String command = this.getCommand();
-            switch (command) {
-                case "1":
-                    this.gameMenuControl.getBoardView().displayBoard(this.game.getBoard());
-                    this.gameMenuControl.takeTurn();
+            try {
+                String command = this.getCommand();
+                switch (command) {
+                    case "1":
+                        this.gameMenuControl.getBoardView().displayBoard(this.game.getBoard());
+                        this.gameMenuControl.takeTurn();
                     
-                    // Checks for a winner
-                    if (this.game.getStatus().equals(Game.PLAYING)) {
-                        this.game.setStatus(this.game.checkForWin(this.game.getBoard().getBoardLocations(), 
-                                            this.game.getStatus()));
-                        gameStatus = this.game.getStatus();
-                    }
-                    break;
-                case "2":
-                    this.gameMenuControl.displayBoard();
-                    break;
-                case "3":
-                    this.gameMenuControl.startNewGame();
-                    break;
-                case "4":
-                    this.gameMenuControl.displayGameStatistics();
-                    break;
-                case "5":
-                    this.gameMenuControl.displayPlayerStatistics();
-                    break;
-                case "6":
-                    this.gameMenuControl.displayPreferencesMenu();
-                    break;
-                case "7":
-                    this.gameMenuControl.displayHelpMenu();
-                    break;
-                case "Q":
-                    gameStatus = "QUIT";
-                    break;
-            }  
+                        // Checks for a winner
+                        if (this.game.getStatus().equals(Game.PLAYING)) {
+                            this.game.setStatus(this.game.checkForWin(this.game.getBoard().getBoardLocations(), 
+                                                this.game.getStatus()));
+                            gameStatus = this.game.getStatus();
+                        }
+                        break;
+                    case "2":
+                        this.gameMenuControl.displayBoard();
+                        break;
+                    case "3":
+                        this.gameMenuControl.startNewGame();
+                        break;
+                    case "4":
+                        this.gameMenuControl.displayGameStatistics();
+                        break;
+                    case "5":
+                        this.gameMenuControl.displayPlayerStatistics();
+                        break;
+                    case "6":
+                        this.gameMenuControl.displayPreferencesMenu();
+                        break;
+                    case "7":
+                        this.gameMenuControl.displayHelpMenu();
+                        break;
+                    case "Q":
+                        gameStatus = "QUIT";
+                        break;
+                }  
+            } catch (GameException | MenuException tex) {
+                System.out.println("\n\t" + tex.getMessage());
+                continue;
+            }
         } while (!gameStatus.equals("QUIT") && !gameStatus.equals(Game.WINNER));
         
         return Game.PLAYING;

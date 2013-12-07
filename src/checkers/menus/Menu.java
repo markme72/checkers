@@ -3,6 +3,7 @@ package checkers.menus;
 import checkers.controls.Checkers;
 import checkers.controls.CheckersError;
 import checkers.enums.ErrorType;
+import checkers.exceptions.MenuException;
 import checkers.interfaces.DisplayInfo;
 import java.util.Scanner;
 
@@ -52,7 +53,7 @@ public abstract class Menu implements DisplayInfo {
         return false;
     }
 
-    protected final String getCommand() {
+    protected final String getCommand() throws MenuException {
 
         Scanner inFile = Checkers.getInputFile();
         String command;
@@ -62,8 +63,7 @@ public abstract class Menu implements DisplayInfo {
             command = command.trim().toUpperCase();
             valid = validCommand(command);
             if (!validCommand(command)) {
-                new CheckersError(ErrorType.ERROR101).display();
-                continue;
+                throw new MenuException(ErrorType.ERROR101.getMessage());
             }
                 
         } while (!valid);

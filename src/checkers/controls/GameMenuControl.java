@@ -6,6 +6,8 @@ import checkers.models.Game;
 import checkers.menus.Location;
 import checkers.models.Player;
 import checkers.enums.ErrorType;
+import checkers.exceptions.CheckersException;
+import checkers.exceptions.GameException;
 import checkers.menus.GamePreferencesMenuView;
 import checkers.menus.HelpMenuView;
 import java.awt.Point;
@@ -36,14 +38,13 @@ public class GameMenuControl {
     /* 
      * Take a turn action
      */
-    public void takeTurn() {
+    public void takeTurn() throws GameException {
         
         int returnValue = 1;
         
         if (!this.game.getStatus().equals(Game.NEW_GAME)  && 
             !this.game.getStatus().equals(Game.PLAYING)) {
-            new CheckersError(ErrorType.ERROR102).display();
-            return;
+            throw new GameException(ErrorType.ERROR102.getMessage());
         } else {
     }
          
@@ -127,13 +128,12 @@ public class GameMenuControl {
      * A regular player takes a turn
      * @parameter player The player taking the turn
      */
-    private int regularPlayerTurn(Player player) {
+    private int regularPlayerTurn(Player player) throws GameException {
         boolean noJump = false;
         boolean jump = false;
         if (!this.game.getStatus().equals(Game.NEW_GAME)  &&
             !this.game.getStatus().equals(Game.PLAYING)) {
-            new CheckersError(ErrorType.ERROR103).display();
-            return -1;
+            throw new GameException(ErrorType.ERROR103.getMessage());
         } 
         
         this.game.setStatus(Game.PLAYING);
