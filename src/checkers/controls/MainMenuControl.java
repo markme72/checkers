@@ -1,5 +1,6 @@
 package checkers.controls;
 
+import checkers.exceptions.MenuException;
 import checkers.models.Game;
 import checkers.models.Player;
 import checkers.menus.GameMenuView;
@@ -15,7 +16,7 @@ import java.util.Scanner;
 public class MainMenuControl {
     
     
-    public void startGame(long noPlayers) {
+    public void startGame(long noPlayers) throws MenuException {
         Game game;
         game = this.createGame("TWO_PLAYER");
        
@@ -69,7 +70,7 @@ public class MainMenuControl {
     /*
      * Display help menu action
      */
-    public void displayHelpMenu() {
+    public void displayHelpMenu() throws MenuException {
         HelpMenuView helpMenuView = new HelpMenuView();
         helpMenuView.getInput();
     }

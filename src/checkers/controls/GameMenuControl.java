@@ -6,8 +6,8 @@ import checkers.models.Game;
 import checkers.menus.Location;
 import checkers.models.Player;
 import checkers.enums.ErrorType;
-import checkers.exceptions.CheckersException;
 import checkers.exceptions.GameException;
+import checkers.exceptions.MenuException;
 import checkers.menus.GamePreferencesMenuView;
 import checkers.menus.HelpMenuView;
 import java.awt.Point;
@@ -102,7 +102,7 @@ public class GameMenuControl {
      /*
       * Display game preferences menu action
       */ 
-    public void displayPreferencesMenu() {
+    public void displayPreferencesMenu() throws MenuException {
         GamePreferencesMenuView gamePreferenceMenuView = new GamePreferencesMenuView(this.game);
         gamePreferenceMenuView.getInput();
     }
@@ -111,7 +111,7 @@ public class GameMenuControl {
     /*
       * Display help menu action
       */
-    public void displayHelpMenu() {
+    public void displayHelpMenu() throws MenuException {
         HelpMenuView helpMenuView = new HelpMenuView();
         helpMenuView.getInput();
     }
