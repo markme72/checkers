@@ -1,11 +1,9 @@
 package checkers.menus;
 
 import checkers.controls.GameMenuControl;
-import checkers.exceptions.CheckersException;
 import checkers.exceptions.GameException;
 import checkers.exceptions.MenuException;
 import checkers.models.Game;
-import checkers.menus.Menu;
 import java.util.Objects;
 
 /**
