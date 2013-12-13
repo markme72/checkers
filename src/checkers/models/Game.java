@@ -1,5 +1,6 @@
 package checkers.models;
 
+import checkers.enums.StatusType;
 import java.util.Objects;
 
 /**
@@ -14,18 +15,7 @@ public class Game {
     public final static String PLAYER_B_DEFAULT_KINGED_MARKER = "O";
 
     public final static String INVALID_SPACE_DEFAULT_MARKER = "$";
-    
-    public static final String TWO_PLAYER = "TWO_PLAYER";
-    
-    public static final String CONTINUE = "CONTINUE";
-    public static final String NEW_GAME = "NEW_GAME";
-    public static final String PLAYING = "PLAYING"; 
-    public static final String WINNER = "WINNER"; 
-    public static final String TIE = "TIE"; 
-    public static final String QUIT = "QUIT"; 
-    public static final String ERROR = "ERROR";
-    public static final String EXIT = "EXIT";
-
+   
     private String gameType;
     private Player playerA;
     private Player kingedPlayerA;
@@ -253,7 +243,7 @@ public class Game {
 
         // clear the board
         this.board.clearTheBoard();
-        this.setStatus(Game.NEW_GAME);
+        this.setStatus(StatusType.NEW_GAME.getValue());
         this.setPlayingOrder(this.playerA, this.playerB, this.kingedPlayerA, this.kingedPlayerB);
     }
 
@@ -280,7 +270,7 @@ public class Game {
         noLosses++;
         this.loser.setLosses(noLosses);
 
-        this.setStatus(Game.WINNER);
+        this.setStatus(StatusType.WINNER.getValue());
         
     }
 
@@ -292,7 +282,7 @@ public class Game {
         player2Ties++;
         this.playerB.setTies(player2Ties);
 
-        this.setStatus(Game.TIE);
+        this.setStatus(StatusType.TIE.getValue());
        
     }
 
@@ -314,19 +304,19 @@ public class Game {
         if (player1 == 0) {
             this.winner = this.playerB;
             this.loser = this.playerA;
-            gameStatus = Game.WINNER;
+            gameStatus = StatusType.WINNER.getValue();
             System.out.print(getWinningMessage());
             board.clearTheBoard();
         }
         else if (player2 == 0) {
             this.winner = this.playerA;
             this.loser = this.playerB;
-            gameStatus = Game.WINNER;
+            gameStatus = StatusType.WINNER.getValue();
             System.out.print(getWinningMessage());
             board.clearTheBoard();
         }
         else if (player1 == 1 && player2 == 1) {
-            gameStatus = Game.TIE;
+            gameStatus = StatusType.TIE.getValue();
             System.out.print(getTiedMessage());
             board.clearTheBoard();
         }

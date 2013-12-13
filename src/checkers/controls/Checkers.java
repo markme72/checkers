@@ -2,6 +2,7 @@ package checkers.controls;
 
 import checkers.enums.ErrorType;
 import checkers.exceptions.MenuException;
+import checkers.frames.MainFrame;
 import checkers.menus.GamePreferencesMenuView;
 import checkers.menus.HelpMenuView;
 import checkers.menus.MainMenuView;
@@ -56,15 +57,17 @@ public class Checkers {
         
     public static void main(String[] args) throws MenuException {
         Checkers checkers = new Checkers();
-        checkers.display();
-        MainMenuView mainMenu = new MainMenuView();
-        try {
+        //checkers.display();
+        //MainMenuView mainMenu = new MainMenuView();
+        MainFrame mainFrame = new MainFrame();
+        mainFrame.setVisible(true);
+        /*try {
             mainMenu.getInput(null);
         }
         
         finally {
             Checkers.inFile.close();
-        }        
+        } */       
     }
     
     private void display() {

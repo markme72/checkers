@@ -4,6 +4,7 @@ import checkers.controls.CheckersError;
 import checkers.enums.ErrorType;
 import java.awt.Point;
 import java.util.Arrays;
+import javax.swing.JPanel;
 
 /**
  *
@@ -372,21 +373,21 @@ public class Board {
     }
     
     
-    public void setInvalidLocations(Game game) {
+    public void setInvalidLocations(Game game, JPanel[][] boardLocationsView) {
          for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
-                if ((row + col) % 2 != 0){
+                if ((row + col) % 2 == 0){
                 occupyLocation(game.getInvalidSpaces(), -1, -1, row, col);
                 }
             }
         }
     }
     
-    public void setInitialLocations(Game game) {
+    public void setInitialLocations(Game game, JPanel[][] boardLocationsView) {
         // Set player one's markers (x)
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 8; col++) {
-                if ((row + col) % 2 == 0){
+                if ((row + col) % 2 != 0){
                 occupyLocation(game.getPlayerA(), -1, -1, row, col);
                 }
             }
@@ -394,7 +395,7 @@ public class Board {
         // Set player two's markers (o)
         for (int row = 5; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
-                if ((row + col) % 2 == 0){
+                if ((row + col) % 2 != 0){
                 occupyLocation(game.getPlayerB(), -1, -1, row, col);
                 }
             }

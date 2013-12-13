@@ -1,6 +1,7 @@
 package checkers.menus;
 
 import checkers.controls.GameMenuControl;
+import checkers.enums.StatusType;
 import checkers.exceptions.GameException;
 import checkers.exceptions.MenuException;
 import checkers.models.Game;
@@ -38,7 +39,7 @@ public class GameMenuView extends Menu {
     public Object getInput(Object object) throws MenuException {
         this.game = (Game) object;
 
-        this.game.setStatus(Game.CONTINUE);
+        this.game.setStatus(StatusType.CONTINUE.getValue());
 
         String gameStatus = this.game.getStatus();
 
@@ -54,7 +55,7 @@ public class GameMenuView extends Menu {
                         this.gameMenuControl.takeTurn();
                     
                         // Checks for a winner
-                        if (this.game.getStatus().equals(Game.PLAYING)) {
+                        if (this.game.getStatus().equals(StatusType.PLAYING.getValue())) {
                             this.game.setStatus(this.game.checkForWin(this.game.getBoard().getBoardLocations(), 
                                                 this.game.getStatus()));
                             gameStatus = this.game.getStatus();
@@ -86,9 +87,9 @@ public class GameMenuView extends Menu {
                 System.out.println("\n\t" + tex.getMessage());
                 continue;
             }
-        } while (!gameStatus.equals("QUIT") && !gameStatus.equals(Game.WINNER));
+        } while (!gameStatus.equals("QUIT") && !gameStatus.equals(StatusType.WINNER.getValue()));
         
-        return Game.PLAYING;
+        return StatusType.PLAYING.getValue();
     }
 
     public GameMenuControl getGameMenuControl() {

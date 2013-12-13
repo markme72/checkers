@@ -1,5 +1,7 @@
 package checkers.controls;
 
+import checkers.enums.GameType;
+import checkers.enums.StatusType;
 import checkers.exceptions.MenuException;
 import checkers.models.Game;
 import checkers.models.Player;
@@ -26,7 +28,7 @@ public class MainMenuControl {
 
     
     
-    private Game createGame(String gameType) {
+    public Game createGame(String gameType) {
         Game game = null;
         Player playerA = null;
         Player kingedPlayerA = null;
@@ -34,7 +36,7 @@ public class MainMenuControl {
         Player kingedPlayerB = null;
         
 
-        game = new Game(Game.TWO_PLAYER);
+        game = new Game(GameType.TWO_PLAYER.getValue());
         playerA = new Player(Player.REGULAR_PLAYER, Game.PLAYER_A_DEFAULT_MARKER) {};
         playerA.setName("Player 1");
         kingedPlayerA = new Player(Player.REGULAR_PLAYER, Game.PLAYER_A_DEFAULT_KINGED_MARKER) {};
@@ -60,10 +62,10 @@ public class MainMenuControl {
         Scanner inFile = new Scanner(System.in);
         String answer = inFile.next().trim().toUpperCase();
         if (answer.equals("Y")) {
-            return Game.EXIT;
+            return StatusType.EXIT.getValue();
         }
 
-        return Game.PLAYING;
+        return StatusType.PLAYING.getValue();
     }
     
     

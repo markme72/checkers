@@ -4,14 +4,17 @@ import checkers.models.Board;
 import checkers.menus.BoardView;
 import checkers.models.Game;
 import checkers.menus.Location;
-import checkers.models.Player;
 import checkers.enums.ErrorType;
+import checkers.enums.StatusType;
 import checkers.exceptions.GameException;
 import checkers.exceptions.MenuException;
+import checkers.frames.GameFrame;
 import checkers.menus.GamePreferencesMenuView;
 import checkers.menus.HelpMenuView;
+import checkers.models.Player;
 import java.awt.Point;
 import java.util.Objects;
+import javax.swing.JPanel;
 
 /**
  *
@@ -20,6 +23,7 @@ import java.util.Objects;
 public class GameMenuControl {
     
     private Game game;
+    private GameFrame gameFrame;
     private Board board;
     private Location getLocation = new Location();
     private BoardView boardView = new BoardView();
@@ -42,8 +46,8 @@ public class GameMenuControl {
         
         int returnValue = 1;
         
-        if (!this.game.getStatus().equals(Game.NEW_GAME)  && 
-            !this.game.getStatus().equals(Game.PLAYING)) {
+        if ((!this.game.getStatus().equals(StatusType.NEW_GAME.getValue()))  && 
+            !this.game.getStatus().equals(StatusType.PLAYING.getValue())) {
             throw new GameException(ErrorType.ERROR102.getMessage());
         } else {
     }
@@ -73,10 +77,10 @@ public class GameMenuControl {
     /*
      * Start a new game action
      */
-    public void startNewGame() {
+    public void startNewGame(JPanel[][] boardLocationsView) {
         this.game.start();
-        this.board.setInvalidLocations(game);
-        this.board.setInitialLocations(game);
+        this.board.setInvalidLocations(game, boardLocationsView);
+        this.board.setInitialLocations(game, boardLocationsView);
         this.displayBoard();
     }
   
@@ -131,12 +135,12 @@ public class GameMenuControl {
     private int regularPlayerTurn(Player player) throws GameException {
         boolean noJump = false;
         boolean jump = false;
-        if (!this.game.getStatus().equals(Game.NEW_GAME)  &&
-            !this.game.getStatus().equals(Game.PLAYING)) {
+        if ((!this.game.getStatus().equals(StatusType.NEW_GAME.getValue()))  &&
+            !this.game.getStatus().equals(StatusType.PLAYING.getValue())) {
             throw new GameException(ErrorType.ERROR103.getMessage());
         } 
         
-        this.game.setStatus(Game.PLAYING);
+        this.game.setStatus(StatusType.PLAYING.getValue());
 
         Point markerLocation = getLocation.getMarkerLocation(this.game);
         if (markerLocation == null) { // no location was entered?

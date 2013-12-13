@@ -1,8 +1,8 @@
 package checkers.menus;
 
 import checkers.controls.MainMenuControl;
+import checkers.enums.StatusType;
 import checkers.exceptions.MenuException;
-import checkers.models.Game;
 
 /**
  *
@@ -27,7 +27,7 @@ public class MainMenuView extends Menu {
     
     public String getInput(Object object) throws MenuException {       
         
-        String gameStatus = Game.PLAYING;
+        String gameStatus = StatusType.PLAYING.getValue();
         do {
             this.display();
 
@@ -42,14 +42,14 @@ public class MainMenuView extends Menu {
                         mainMenuControl.displayHelpMenu();
                         break;
                     case "X":
-                        return Game.EXIT;
+                        return StatusType.EXIT.getValue();
                 }
             } catch (MenuException cex) {
                     System.out.println("\n\t" + cex.getMessage());
                 }
-        } while (!gameStatus.equals(Game.EXIT));
+        } while (!gameStatus.equals(StatusType.EXIT.getValue()));
 
-        return Game.EXIT;
+        return StatusType.EXIT.getValue();
     }
 
     
