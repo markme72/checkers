@@ -1,7 +1,10 @@
 package checkers.menus;
 
+import checkers.frames.GameFrame;
 import checkers.models.Board;
+import checkers.models.Game;
 import checkers.models.Player;
+import javax.swing.JLabel;
 
 /**
  *
@@ -10,22 +13,20 @@ import checkers.models.Player;
 public class BoardView {
     
     private Board board;
+    private Game game;
     
-    public void displayBoard(Board board) {
+    public void displayBoard(Board board, JLabel[][] markerLocationsView, Game game) {
         this.board = board;
-        
-        this.printHeadRow(); // print the header row for the board
-        this.printDividerRow(); // print the top divider row of the board
+        this.game = game;
         
         // for all rows in the board
         for (int i = 0; i < this.board.getRowCount(); i++) {
             // get the list of list of columns locations in the row
-            Player[] rowOfLocations = this.board.getBoardLocations()[i];
+            Player[] boardLocations = this.board.getBoardLocations()[i];
+            JLabel[] markerLocations = markerLocationsView[i];
             
             // print the contents of each location in the row
-            this.printRow(i+1, rowOfLocations); 
-            
-            this.printDividerRow();// print the ending divider for the row
+            this.printBoard(markerLocations, boardLocations, game); 
         }
         
         System.out.println(); // print blank line after the board
@@ -95,5 +96,15 @@ public class BoardView {
         }        
     }
 
+    private void printBoard(JLabel[] markerLocations, Player[] boardLocations, Game game) {
+        for (int i=0; i < 8; i++) {
+            if (markerLocations[i] != null){
+                if (boardLocations[i] == game.getPlayerA() || boardLocations[i] == game.getPlayerB()) {
+                    markerLocations[i].setText(boardLocations[i].getMarker());
+                }
+            }
+        }
+    }
+    
     
 }

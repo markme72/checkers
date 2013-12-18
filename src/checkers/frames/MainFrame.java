@@ -4,11 +4,6 @@
  */
 package checkers.frames;
 
-import checkers.controls.MainMenuControl;
-import checkers.enums.GameType;
-import checkers.exceptions.MenuException;
-import checkers.models.Game;
-
 /**
  *
  * @author
@@ -107,6 +102,11 @@ public class MainFrame extends javax.swing.JFrame {
                 jStartGameMouseClicked(evt);
             }
         });
+        jStartGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jStartGameActionPerformed(evt);
+            }
+        });
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
@@ -160,20 +160,10 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private MainMenuControl mainMenu = new MainMenuControl();
-
-    public MainMenuControl getMainMenu() {
-        return mainMenu;
-    }
-
-    public void setMainMenu(MainMenuControl mainMenu) {
-        this.mainMenu = mainMenu;
-    }
     
     private void jStartGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jStartGameMouseClicked
-            Game game = this.mainMenu.createGame(GameType.TWO_PLAYER.getValue());
-            GameFrame gameFrame = new GameFrame(game);
-            gameFrame.setVisible(true);
+            GetNamesFrame getNames = new GetNamesFrame();
+            getNames.setVisible(true);
             this.dispose();
     }//GEN-LAST:event_jStartGameMouseClicked
 
@@ -186,6 +176,10 @@ public class MainFrame extends javax.swing.JFrame {
     private void jExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jExitMouseClicked
         this.dispose();
     }//GEN-LAST:event_jExitMouseClicked
+
+    private void jStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStartGameActionPerformed
+        
+    }//GEN-LAST:event_jStartGameActionPerformed
 
     /**
      * @param

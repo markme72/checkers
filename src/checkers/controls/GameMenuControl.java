@@ -14,7 +14,7 @@ import checkers.menus.HelpMenuView;
 import checkers.models.Player;
 import java.awt.Point;
 import java.util.Objects;
-import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 /**
  *
@@ -27,6 +27,7 @@ public class GameMenuControl {
     private Board board;
     private Location getLocation = new Location();
     private BoardView boardView = new BoardView();
+    private JLabel[][] markerLocations = null;
 
     
     public GameMenuControl(Game game) {
@@ -44,44 +45,29 @@ public class GameMenuControl {
      */
     public void takeTurn() throws GameException {
         
-        int returnValue = 1;
-        
         if ((!this.game.getStatus().equals(StatusType.NEW_GAME.getValue()))  && 
             !this.game.getStatus().equals(StatusType.PLAYING.getValue())) {
             throw new GameException(ErrorType.ERROR102.getMessage());
-        } else {
-    }
-         
-            // regular player takes turn
-            returnValue = this.regularPlayerTurn(this.game.getCurrentPlayer());            
-
-            this.displayBoard();
-            this.alternatePlayers(); // alternate players             
-            
-            // other player takes turn 
-            returnValue = this.regularPlayerTurn(this.game.getCurrentPlayer());            
-
-            this.game.getBoard().kingMe(game);
-            this.displayBoard();
-            this.alternatePlayers(); // alternate players
+        }
     }
     
     
     /*
      * Display the board acton
      */
-    public void displayBoard() {
-        boardView.displayBoard(this.board);
+    public void displayBoard(JLabel[][] markerLocationsView) {
+        boardView.displayBoard(this.board, markerLocationsView, this.game);
     }
     
     /*
      * Start a new game action
      */
-    public void startNewGame(JPanel[][] boardLocationsView) {
+    public void startNewGame(JLabel[][] markerLocationsView) {
         this.game.start();
-        this.board.setInvalidLocations(game, boardLocationsView);
-        this.board.setInitialLocations(game, boardLocationsView);
-        this.displayBoard();
+        this.markerLocations = markerLocationsView;
+        this.board.setInvalidLocations(game, this.markerLocations);
+        this.board.setInitialLocations(game, this.markerLocations);
+        this.displayBoard(this.markerLocations);
     }
   
     
@@ -128,13 +114,9 @@ public class GameMenuControl {
         System.out.println("\t************************************************");
     }
     
-    /*
-     * A regular player takes a turn
-     * @parameter player The player taking the turn
-     */
-    private int regularPlayerTurn(Player player) throws GameException {
-        boolean noJump = false;
-        boolean jump = false;
+
+    public boolean regularPlayerSelection(Player player, JLabel[][] markerLocationsView, Point coordinate) throws GameException {
+        boolean move = false;
         if ((!this.game.getStatus().equals(StatusType.NEW_GAME.getValue()))  &&
             !this.game.getStatus().equals(StatusType.PLAYING.getValue())) {
             throw new GameException(ErrorType.ERROR103.getMessage());
@@ -142,15 +124,15 @@ public class GameMenuControl {
         
         this.game.setStatus(StatusType.PLAYING.getValue());
 
-        Point markerLocation = getLocation.getMarkerLocation(this.game);
-        if (markerLocation == null) { // no location was entered?
-            return -1;
-        }
+        move = getLocation.getMarkerLocation(this.game, coordinate);
         
-        Point moveLocation = getLocation.getMoveLocation(this.game, false);
-        if (moveLocation == null) { // no location was entered?
-            return -1;
-        }
+        return true;
+    }
+    
+    public boolean regularPlayerMove(Player player, JLabel[][] markerLocationsView, Point markerLocation) throws GameException {
+        boolean noJump = false;
+        
+        Point moveLocation = getLocation.getMoveLocation(this.game, false, markerLocation);
         
         Point[] jumpCorners = {
           new Point(markerLocation.x-2,markerLocation.y-2),  
@@ -160,26 +142,22 @@ public class GameMenuControl {
         };
         
         this.game.getBoard().occupyLocation(player, markerLocation.x, markerLocation.y, moveLocation.x, moveLocation.y);
-        this.game.getBoard().unoccupyLocation(game, markerLocation.x, markerLocation.y, noJump);        
+        this.game.getBoard().unoccupyLocation(this.game, getLocation.getMarkerRow(), getLocation.getMarkerCol(), noJump);        
         
-        if (jumpCorners[0].equals(moveLocation) || jumpCorners[1].equals(moveLocation) || jumpCorners[2].equals(moveLocation) 
-                || jumpCorners[3].equals(moveLocation))
-            jump = board.canJumpAgain(game, moveLocation.x, moveLocation.y);
-            while (jump) {
-                boardView.displayBoard(board);
-                int moveRow = getLocation.getMoveRow()-1;
-                int moveCol = getLocation.getMoveCol()-1;
-                Point newMoveLocation = getLocation.getMoveLocation(this.game, jump);
-                    if (newMoveLocation == null) { // no location was entered?
-                        return -1;
-                    }
-                this.game.getBoard().occupyLocation(player, moveRow, moveCol, newMoveLocation.x, newMoveLocation.y);
-                this.game.getBoard().unoccupyLocation(game, moveRow, moveCol, noJump);
-                jump = board.canJumpAgain(game, newMoveLocation.x, newMoveLocation.y);
-            }
-        return 0;
+        // Checks if the player can make multiple jumps and allows them to
+        return this.multiJump(moveLocation, jumpCorners, markerLocationsView, player);
     }
 
+    
+    public boolean multiJump(Point moveLocation, Point[] jumpCorners, JLabel[][] markerLocationsView, Player player) {
+            if (jumpCorners[0].equals(moveLocation) || jumpCorners[1].equals(moveLocation) || jumpCorners[2].equals(moveLocation) 
+                || jumpCorners[3].equals(moveLocation))
+            return board.canJumpAgain(this.game, moveLocation.x, moveLocation.y);
+            else {
+                return false;
+            }
+    }
+    
     /*
      * Alternate players
      */
@@ -195,7 +173,6 @@ public class GameMenuControl {
             this.game.setKingedCurrentPlayer(this.game.getKingedPlayerA());
             this.game.setOtherPlayer(this.game.getPlayerB());
             this.game.setKingedOtherPlayer(this.game.getKingedPlayerB());
-
         }
     }
    

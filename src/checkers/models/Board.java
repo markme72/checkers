@@ -4,6 +4,7 @@ import checkers.controls.CheckersError;
 import checkers.enums.ErrorType;
 import java.awt.Point;
 import java.util.Arrays;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -86,6 +87,7 @@ public class Board {
         boolean jump3 = false;
         
         // Checks for valid moves for "o" player
+        if (boardLocations[x][y] != null) {
         if (game.getCurrentPlayer().getMarker().equals("o") && boardLocations[x][y].getMarker().equals("o")) {     
             // Check to see if corner is out of the bounds of the array
             if (x - 1 >= 0 && y - 1 >= 0 && x - 1 <= 7 && y - 1 <= 7) { 
@@ -185,7 +187,7 @@ public class Board {
             if (jump0 || jump1 || jump2 || jump3)
                 valid = true;
         }
-
+        }
         
         return valid;
     }
@@ -206,7 +208,7 @@ public class Board {
         jumpCorners[3] = new Point(x+2,y+2);
         
         boolean valid = false;
-        
+        if (boardLocations[markerRow][markerCol] != null) {
         // Prevents "o" from moving backwards
         if (game.getCurrentPlayer().getMarker().equals("o") && this.boardLocations[markerRow][markerCol].getMarker().equals("o")) {   
             for (int i = 2; i < 4; i++) {
@@ -258,7 +260,7 @@ public class Board {
                 }
             }
         }
-        
+        }
         return valid;
     }
     
@@ -373,7 +375,7 @@ public class Board {
     }
     
     
-    public void setInvalidLocations(Game game, JPanel[][] boardLocationsView) {
+    public void setInvalidLocations(Game game, JLabel[][] boardLocationsView) {
          for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
                 if ((row + col) % 2 == 0){
@@ -383,7 +385,7 @@ public class Board {
         }
     }
     
-    public void setInitialLocations(Game game, JPanel[][] boardLocationsView) {
+    public void setInitialLocations(Game game, JLabel[][] boardLocationsView) {
         // Set player one's markers (x)
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 8; col++) {

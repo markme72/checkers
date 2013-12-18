@@ -1,6 +1,8 @@
 package checkers.models;
 
 import checkers.enums.StatusType;
+import checkers.frames.GameFrame;
+import checkers.frames.GetNamesFrame;
 import java.util.Objects;
 
 /**
@@ -30,6 +32,7 @@ public class Game {
     private String status;
     private Board board;
     private Player invalidSpaces;
+    private GameFrame gameFrame;
 
     public Game() {
    
@@ -48,12 +51,22 @@ public class Game {
 
     public Game(String gameType) {
         this();
-
+        
         this.gameType = gameType;
         this.board = new Board(8, 8);
         
         
     }
+
+    public GameFrame getGameFrame() {
+        return gameFrame;
+    }
+
+    public void setGameFrame(GameFrame gameFrame) {
+        this.gameFrame = gameFrame;
+    }
+    
+    
     
     public void setKingedCurrentPlayer(Player kingedCurrentPlayer) {
         this.kingedCurrentPlayer = kingedCurrentPlayer;
