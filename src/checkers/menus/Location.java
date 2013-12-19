@@ -5,6 +5,7 @@ import checkers.models.Game;
 import checkers.controls.Checkers;
 import checkers.controls.CheckersError;
 import checkers.enums.ErrorType;
+import checkers.exceptions.GameException;
 import java.awt.Point;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -20,13 +21,11 @@ public class Location {
     private int moveCol;
 
     
-    public boolean getMarkerLocation(Game game, Point markerCoordinates) {
+    public boolean getMarkerLocation(Game game, Point markerCoordinates) throws GameException {
         Point location = null;
         
         boolean valid = false;
-        
-            System.out.println(game.getCurrentPlayer().getName() + ", what is the location of the piece that you want to move?"
-                    + " (e.g. 1 8 or 1,8)");
+
             Board board = game.getBoard();
             
             int row = markerCoordinates.x;
@@ -39,32 +38,21 @@ public class Location {
             location = new Point(row, column);
             
             if (board.locationUnoccupied(location, game.getOtherPlayer(), game.getInvalidSpaces(), game.getKingedOtherPlayer())) {
-                new CheckersError(ErrorType.ERROR106).display();
-                return false;
+                throw new GameException(ErrorType.ERROR106.getMessage());
             }
             
             if (!board.canMarkerMove(row, column, game)) {
-                new CheckersError(ErrorType.ERROR107).display();
-                return false;
+                throw new GameException(ErrorType.ERROR107.getMessage());
             }
         
         
         return true;
     }
     
-    public Point getMoveLocation(Game game, boolean jump, Point markerCoordinates) {
+    public Point getMoveLocation(Game game, boolean jump, Point markerCoordinates) throws GameException {
         Point location = null;
         int oldMoveRow = this.moveRow;
         int oldMoveCol = this.moveCol;
-        
-            if (!jump){
-                System.out.println(game.getCurrentPlayer().getName() + ", where would you like to move?"
-                        + " (e.g. 1 8 or 1,8)");
-            }
-            else {
-                System.out.println(game.getCurrentPlayer().getName() + ", jump again!"
-                        + " (e.g. 1 8 or 1,8)");                
-            }
                 
             int row = markerCoordinates.x;
             int column = markerCoordinates.y;
@@ -81,14 +69,12 @@ public class Location {
             }
             if (jump){
                 if (!board.checkMoveLocation(row, column, oldMoveRow, oldMoveCol, game)) {
-                    new CheckersError(ErrorType.ERROR109).display();
-                    return null;
+                    throw new GameException(ErrorType.ERROR109.getMessage());
                 }
             }
             else
                 if(!board.checkMoveLocation(row, column, this.markerRow, this.markerCol, game)) {
-                    new CheckersError(ErrorType.ERROR109).display();
-                    return null;
+                    throw new GameException(ErrorType.ERROR109.getMessage());
             }
         
         return location;

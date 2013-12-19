@@ -99,7 +99,8 @@ public class BoardView {
     private void printBoard(JLabel[] markerLocations, Player[] boardLocations, Game game) {
         for (int i=0; i < 8; i++) {
             if (markerLocations[i] != null){
-                if (boardLocations[i] == game.getPlayerA() || boardLocations[i] == game.getPlayerB()) {
+                if (boardLocations[i] == game.getPlayerA() || boardLocations[i] == game.getPlayerB() || 
+                    boardLocations[i] == game.getKingedPlayerA() || boardLocations[i] == game.getKingedPlayerB()) {
                     markerLocations[i].setText(boardLocations[i].getMarker());
                 }
                 else if (boardLocations[i] == null){

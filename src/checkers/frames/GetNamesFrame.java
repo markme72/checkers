@@ -25,6 +25,7 @@ public class GetNamesFrame extends javax.swing.JFrame {
      */
     public GetNamesFrame() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

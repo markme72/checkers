@@ -19,6 +19,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -59,7 +60,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jHelp = new javax.swing.JButton();
         jExit = new javax.swing.JButton();
         jStartGame = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -80,13 +80,6 @@ public class MainFrame extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel2.setBackground(new java.awt.Color(255, 0, 0));
-
-        jHelp.setText("Help");
-        jHelp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jHelpMouseClicked(evt);
-            }
-        });
 
         jExit.setText("Exit");
         jExit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -117,20 +110,19 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
-                .add(50, 50, 50)
-                .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 206, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jStartGame)
+                .add(97, 97, 97))
+            .add(jPanel2Layout.createSequentialGroup()
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanel2Layout.createSequentialGroup()
-                        .add(16, 16, 16)
-                        .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jHelp)
-                            .add(jExit)))
-                    .add(jStartGame))
-                .add(97, 97, 97))
+                        .add(50, 50, 50)
+                        .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 206, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel2Layout.createSequentialGroup()
+                        .add(113, 113, 113)
+                        .add(jExit)))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -139,11 +131,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 53, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 56, Short.MAX_VALUE)
                 .add(jStartGame)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jHelp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(18, 18, 18)
                 .add(jExit, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(48, 48, 48))
+                .add(83, 83, 83))
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
@@ -166,12 +156,6 @@ public class MainFrame extends javax.swing.JFrame {
             getNames.setVisible(true);
             this.dispose();
     }//GEN-LAST:event_jStartGameMouseClicked
-
-    private void jHelpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jHelpMouseClicked
-            HelpFrame helpFrame = new HelpFrame();
-            helpFrame.setVisible(true);
-            this.dispose();
-    }//GEN-LAST:event_jHelpMouseClicked
 
     private void jExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jExitMouseClicked
         this.dispose();
@@ -222,7 +206,6 @@ public class MainFrame extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jExit;
-    private javax.swing.JButton jHelp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

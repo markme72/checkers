@@ -209,7 +209,7 @@ public class GameFrame extends javax.swing.JFrame {
         jHelp = new javax.swing.JButton();
         jQuit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextArea = new javax.swing.JTextArea();
 
         jLabel2.setText("jLabel2");
 
@@ -1904,13 +1904,23 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         jHelp.setText("Help");
+        jHelp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jHelpMouseClicked(evt);
+            }
+        });
 
         jQuit.setText("Quit");
+        jQuit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jQuitMouseClicked(evt);
+            }
+        });
 
-        jTextArea1.setColumns(10);
-        jTextArea1.setRows(5);
-        jTextArea1.setToolTipText("");
-        jScrollPane1.setViewportView(jTextArea1);
+        jTextArea.setColumns(10);
+        jTextArea.setRows(5);
+        jTextArea.setToolTipText("");
+        jScrollPane1.setViewportView(jTextArea);
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -2065,14 +2075,22 @@ public class GameFrame extends javax.swing.JFrame {
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(j07, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                         .add(0, 0, Short.MAX_VALUE)))
-                .add(20, 20, 20)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
-                        .add(jStartNewGame)
-                        .add(jHelp)
-                        .add(jQuit))
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 141, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .add(20, 20, 20)
+                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 400, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
+                                    .add(jStartNewGame)
+                                    .add(jHelp))
+                                .add(135, 135, 135))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .add(jQuit)
+                                .add(167, 167, 167))))))
             .add(jPanel1Layout.createSequentialGroup()
                 .add(195, 195, 195)
                 .add(jLabel1)
@@ -2173,12 +2191,12 @@ public class GameFrame extends javax.swing.JFrame {
                             .add(j77, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(jPanel1Layout.createSequentialGroup()
                         .add(jStartNewGame)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(29, 29, 29)
                         .add(jHelp)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jQuit)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 410, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(18, 18, 18)
+                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 118, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(18, 18, 18)
+                        .add(jQuit)))
                 .add(0, 10, Short.MAX_VALUE))
         );
 
@@ -2188,13 +2206,13 @@ public class GameFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(0, 0, Short.MAX_VALUE))
+                .add(0, 41, Short.MAX_VALUE))
         );
 
         pack();
@@ -2396,6 +2414,17 @@ public class GameFrame extends javax.swing.JFrame {
                 markerLocation.setLocation(7,6);
     }//GEN-LAST:event_j76MouseClicked
 
+    private void jHelpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jHelpMouseClicked
+        HelpFrame helpFrame = new HelpFrame();
+        helpFrame.setVisible(true);
+    }//GEN-LAST:event_jHelpMouseClicked
+
+    private void jQuitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jQuitMouseClicked
+        MainFrame mainFrame = new MainFrame();
+        this.dispose();
+        mainFrame.setVisible(true);
+    }//GEN-LAST:event_jQuitMouseClicked
+
     /**
      * @param
      * args
@@ -2539,10 +2568,11 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JButton jQuit;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jStartNewGame;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea;
     // End of variables declaration//GEN-END:variables
 
     private void move() {
+        jTextArea.setText("");
          int jumpAgain = 2;
          try {
                 this.gameCommands.takeTurn();
@@ -2554,19 +2584,20 @@ public class GameFrame extends javax.swing.JFrame {
             try {
                 move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
             } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
+                this.jTextArea.setText(ex.getMessage());
             }
         }
         else {
             try {
                 jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, markerLocation, coordinate);
             } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
+                this.jTextArea.setText(ex.getMessage());
             }
         if (jumpAgain == 0)
+            this.game.getBoard().kingMe(game);
             this.gameCommands.displayBoard(markerLocationsView);
             this.gameCommands.alternatePlayers();
-             this.move = false;
+            this.move = false;
         }
     }
     

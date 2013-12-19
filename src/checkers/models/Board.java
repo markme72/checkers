@@ -336,13 +336,13 @@ public class Board {
     }
     
     public void kingMe(Game game) {
-        for (int i = 0; i < this.boardLocations[0].length; i += 2) {
+        for (int i = 1; i < this.boardLocations[0].length; i += 2) {
             if (this.boardLocations[0][i] == game.getPlayerB()) {
                 this.boardLocations[0][i] = game.getKingedPlayerB();
             }
         }
         
-        for (int i = 1; i < boardLocations[7].length; i += 2) {
+        for (int i = 0; i < boardLocations[7].length; i += 2) {
             if (boardLocations[7][i] == game.getPlayerA()) {
                 boardLocations[7][i] = game.getKingedPlayerA();
             }
