@@ -23,7 +23,6 @@ import javax.swing.JLabel;
 public class GameMenuControl {
     
     private Game game;
-    private GameFrame gameFrame;
     private Board board;
     private Location getLocation = new Location();
     private BoardView boardView = new BoardView();
@@ -65,8 +64,8 @@ public class GameMenuControl {
     public void startNewGame(JLabel[][] markerLocationsView) {
         this.game.start();
         this.markerLocations = markerLocationsView;
-        this.board.setInvalidLocations(game, this.markerLocations);
-        this.board.setInitialLocations(game, this.markerLocations);
+        this.board.setInvalidLocations(game);
+        this.board.setInitialLocations(game);
         this.displayBoard(this.markerLocations);
     }
   
@@ -126,13 +125,17 @@ public class GameMenuControl {
 
         move = getLocation.getMarkerLocation(this.game, coordinate);
         
-        return true;
+        return move;
     }
     
-    public boolean regularPlayerMove(Player player, JLabel[][] markerLocationsView, Point markerLocation) throws GameException {
+    public int regularPlayerMove(Player player, JLabel[][] markerLocationsView, Point markerLocation, Point coordinate) throws GameException {
         boolean noJump = false;
         
-        Point moveLocation = getLocation.getMoveLocation(this.game, false, markerLocation);
+        Point moveLocation = getLocation.getMoveLocation(this.game, false, coordinate);
+        if (moveLocation == null){
+            return 2;
+        }
+            
         
         Point[] jumpCorners = {
           new Point(markerLocation.x-2,markerLocation.y-2),  
@@ -145,7 +148,10 @@ public class GameMenuControl {
         this.game.getBoard().unoccupyLocation(this.game, getLocation.getMarkerRow(), getLocation.getMarkerCol(), noJump);        
         
         // Checks if the player can make multiple jumps and allows them to
-        return this.multiJump(moveLocation, jumpCorners, markerLocationsView, player);
+        if (this.multiJump(moveLocation, jumpCorners, markerLocationsView, player))
+            return 1;
+        else
+            return 0;
     }
 
     

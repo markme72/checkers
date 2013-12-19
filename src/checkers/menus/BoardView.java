@@ -102,6 +102,9 @@ public class BoardView {
                 if (boardLocations[i] == game.getPlayerA() || boardLocations[i] == game.getPlayerB()) {
                     markerLocations[i].setText(boardLocations[i].getMarker());
                 }
+                else if (boardLocations[i] == null){
+                    markerLocations[i].setText("");
+                }
             }
         }
     }

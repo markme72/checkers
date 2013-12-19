@@ -57,8 +57,6 @@ public class Location {
         int oldMoveRow = this.moveRow;
         int oldMoveCol = this.moveCol;
         
-        boolean valid = false;
-        
             if (!jump){
                 System.out.println(game.getCurrentPlayer().getName() + ", where would you like to move?"
                         + " (e.g. 1 8 or 1,8)");
@@ -84,11 +82,13 @@ public class Location {
             if (jump){
                 if (!board.checkMoveLocation(row, column, oldMoveRow, oldMoveCol, game)) {
                     new CheckersError(ErrorType.ERROR109).display();
+                    return null;
                 }
             }
             else
                 if(!board.checkMoveLocation(row, column, this.markerRow, this.markerCol, game)) {
                     new CheckersError(ErrorType.ERROR109).display();
+                    return null;
             }
         
         return location;

@@ -30,6 +30,7 @@ public class GameFrame extends javax.swing.JFrame {
     private String gameStatus = "";
     private Location location = new Location();
     private boolean move = false;
+    private Point markerLocation = new Point();
     
     /**
      * Creates
@@ -2205,899 +2206,194 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void j01MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j01MouseClicked
         this.coordinate.setLocation(0,1);
-        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+        this.move();
+        markerLocation.setLocation(0,1);
     }//GEN-LAST:event_j01MouseClicked
 
     private void j03MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j03MouseClicked
         this.coordinate.setLocation(0,3);
-                boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+         this.move();
+         markerLocation.setLocation(0,3);
     }//GEN-LAST:event_j03MouseClicked
 
     private void j05MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j05MouseClicked
                 this.coordinate.setLocation(0,5);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                move = jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(0,5);
     }//GEN-LAST:event_j05MouseClicked
 
     private void j07MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j07MouseClicked
                 this.coordinate.setLocation(0,7);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(0,7);
     }//GEN-LAST:event_j07MouseClicked
 
     private void j10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j10MouseClicked
                 this.coordinate.setLocation(1,0);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(1,0);
     }//GEN-LAST:event_j10MouseClicked
 
     private void j12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j12MouseClicked
                 this.coordinate.setLocation(1,2);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(1,2);
     }//GEN-LAST:event_j12MouseClicked
 
     private void j14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j14MouseClicked
                 this.coordinate.setLocation(1,4);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(1,4);
     }//GEN-LAST:event_j14MouseClicked
 
     private void j16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j16MouseClicked
                 this.coordinate.setLocation(1,6);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(1,6);
     }//GEN-LAST:event_j16MouseClicked
 
     private void j21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j21MouseClicked
                 this.coordinate.setLocation(2,1);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-            this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(2,1);
     }//GEN-LAST:event_j21MouseClicked
 
     private void j23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j23MouseClicked
                 this.coordinate.setLocation(2,3);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(2,3);
     }//GEN-LAST:event_j23MouseClicked
 
     private void j25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j25MouseClicked
                 this.coordinate.setLocation(2,5);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(2,5);
     }//GEN-LAST:event_j25MouseClicked
 
     private void j27MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j27MouseClicked
                 this.coordinate.setLocation(2,7);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(2,7);
     }//GEN-LAST:event_j27MouseClicked
 
     private void j30MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j30MouseClicked
                 this.coordinate.setLocation(3,0);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(3,0);
     }//GEN-LAST:event_j30MouseClicked
 
     private void j32MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j32MouseClicked
                 this.coordinate.setLocation(3,2);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(3,2);
     }//GEN-LAST:event_j32MouseClicked
 
     private void j34MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j34MouseClicked
                 this.coordinate.setLocation(3,4);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-               move =  this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                 this.move();
+                 markerLocation.setLocation(3,4);
     }//GEN-LAST:event_j34MouseClicked
 
     private void j36MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j36MouseClicked
                 this.coordinate.setLocation(3,6);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-               move =  this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                 this.move();
+                 markerLocation.setLocation(3,6);
     }//GEN-LAST:event_j36MouseClicked
 
     private void j41MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j41MouseClicked
                 this.coordinate.setLocation(4,1);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                 this.move();
+                 markerLocation.setLocation(4,1);
     }//GEN-LAST:event_j41MouseClicked
 
     private void j43MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j43MouseClicked
                 this.coordinate.setLocation(4,3);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(4,3);
     }//GEN-LAST:event_j43MouseClicked
 
     private void j45MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j45MouseClicked
                 this.coordinate.setLocation(4,5);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(4,5);
     }//GEN-LAST:event_j45MouseClicked
 
     private void j47MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j47MouseClicked
                 this.coordinate.setLocation(4,7);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(4,7);
     }//GEN-LAST:event_j47MouseClicked
 
     private void j50MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j50MouseClicked
                 this.coordinate.setLocation(5,0);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(5,0);
     }//GEN-LAST:event_j50MouseClicked
 
     private void j52MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j52MouseClicked
                 this.coordinate.setLocation(5,2);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(5,2);
     }//GEN-LAST:event_j52MouseClicked
 
     private void j54MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j54MouseClicked
                 this.coordinate.setLocation(5,4);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(5,4);
     }//GEN-LAST:event_j54MouseClicked
 
     private void j56MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j56MouseClicked
                 this.coordinate.setLocation(5,6);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(5,6);
     }//GEN-LAST:event_j56MouseClicked
 
     private void j61MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j61MouseClicked
                 this.coordinate.setLocation(6,1);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(6,1);
     }//GEN-LAST:event_j61MouseClicked
 
     private void j63MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j63MouseClicked
                 this.coordinate.setLocation(6,3);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(6,3);
     }//GEN-LAST:event_j63MouseClicked
 
     private void j65MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j65MouseClicked
                 this.coordinate.setLocation(6,5);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(6,5);
     }//GEN-LAST:event_j65MouseClicked
 
     private void j67MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j67MouseClicked
                 this.coordinate.setLocation(6,7);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(6,7);
     }//GEN-LAST:event_j67MouseClicked
 
     private void j70MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j70MouseClicked
                 this.coordinate.setLocation(7,0);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(7,0);
     }//GEN-LAST:event_j70MouseClicked
 
     private void j72MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j72MouseClicked
                 this.coordinate.setLocation(7,2);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-        this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(7,2);
     }//GEN-LAST:event_j72MouseClicked
 
     private void j74MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j74MouseClicked
                 this.coordinate.setLocation(7,4);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-            this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(7,4);
     }//GEN-LAST:event_j74MouseClicked
 
     private void j76MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_j76MouseClicked
                 this.coordinate.setLocation(7,6);
-                        boolean jumpAgain = false;
-         try {
-                this.gameCommands.takeTurn();
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-        if (!move) {
-            try {
-                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else {
-            try {
-                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
-            } catch (GameException ex) {
-                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        if (!jumpAgain)
-            this.gameCommands.alternatePlayers();
-            this.gameCommands.displayBoard(markerLocationsView);
-        }
+                this.move();
+                markerLocation.setLocation(7,6);
     }//GEN-LAST:event_j76MouseClicked
 
     /**
@@ -3246,7 +2542,33 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 
-
+    private void move() {
+         int jumpAgain = 2;
+         try {
+                this.gameCommands.takeTurn();
+            } catch (GameException ex) {
+                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         
+        if (!move) {
+            try {
+                move = this.gameCommands.regularPlayerSelection(this.game.getCurrentPlayer(), markerLocationsView, coordinate);
+            } catch (GameException ex) {
+                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else {
+            try {
+                jumpAgain = this.gameCommands.regularPlayerMove(this.game.getCurrentPlayer(), markerLocationsView, markerLocation, coordinate);
+            } catch (GameException ex) {
+                Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        if (jumpAgain == 0)
+            this.gameCommands.displayBoard(markerLocationsView);
+            this.gameCommands.alternatePlayers();
+             this.move = false;
+        }
+    }
     
 
     public JLabel[][] getMarkerLocationsView() {

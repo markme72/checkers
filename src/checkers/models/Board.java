@@ -375,7 +375,7 @@ public class Board {
     }
     
     
-    public void setInvalidLocations(Game game, JLabel[][] boardLocationsView) {
+    public void setInvalidLocations(Game game) {
          for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
                 if ((row + col) % 2 == 0){
@@ -385,7 +385,7 @@ public class Board {
         }
     }
     
-    public void setInitialLocations(Game game, JLabel[][] boardLocationsView) {
+    public void setInitialLocations(Game game) {
         // Set player one's markers (x)
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 8; col++) {
